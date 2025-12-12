@@ -4,13 +4,11 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './CommunityMain.css'
 import Pagination from 'react-bootstrap/Pagination';
 import { useNavigate, useParams } from "react-router";
-import { useEffect } from "react";
-import Patch from "./components/Patch";
 
-function CommunityMain() {
+function CommunityReview() {
     let navigate = useNavigate();
     let { page } = useParams();
-    let List = JSON.parse(localStorage.getItem('통합데이터'));
+    let List = JSON.parse(localStorage.getItem('프로젝트 후기'));
     let pages = [];
     for (let i = 1; i <= List.length / 10 + 1; i++) {
         pages.push('page ' + i);
@@ -35,10 +33,10 @@ function CommunityMain() {
     return (
         <div className="body">
             <div class="tabs">
-                <button class="tab active" onClick={() => navigate('/community/main/1')}>전체 글</button>
+                <button class="tab" onClick={() => navigate('/community/main/1')}>전체 글</button>
                 <button class="tab" onClick={ ()=> navigate('/community/general/1')}>자유게시판</button>
                 <button class="tab" onClick={ () => navigate('/community/report/1')}>지역 제보</button>
-                <button class="tab" onClick={ () => navigate('/community/review/1')}>프로젝트 후기</button>
+                <button class="tab active" onClick={ () => navigate('/community/review/1')}>프로젝트 후기</button>
             </div>
 
             <div>
@@ -56,4 +54,4 @@ function CommunityMain() {
     );
 }
 
-export default CommunityMain;
+export default CommunityReview;
