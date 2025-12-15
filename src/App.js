@@ -1,3 +1,16 @@
+import React from "react";
+import Header from "./components/Header";
+import Hero from "./components/Hero";
+import Footer from "./components/Footer";
+import FundingSection from "./components/FundingSection";
+import "bootstrap/dist/css/bootstrap.min.css";
+import "bootstrap-icons/font/bootstrap-icons.css";
+import AboutPage from "./pages/AboutPage";
+import HomePage from "./pages/HomePage";
+import FundingPage from "./pages/FundingPage";
+import CommunityPage from "./pages/CommunityPage";
+import MyPage from "./pages/MyPage";
+import CommunitySection from "./components/CommunitySection";
 import logo from './logo.svg';
 import './App.css';
 import CommunityMain from './communitypage/CommunityMain';
@@ -17,6 +30,7 @@ import Register from './loginpage/Register';
 import FindId from './loginpage/FindId';
 import FindPw from './loginpage/FindPw';
 import AccountInit from './data/AccountInit';
+import SearchResultPage from "./pages/SearchResultPage";
 
 function App() {
 
@@ -24,37 +38,30 @@ function App() {
   useEffect(()=> DataInit, [])
   useEffect(()=> AccountInit, [])
 
+  useEffect(() => DataInit, [])
+
   return (
     <div>
-      <Navbar bg="light" data-bs-theme="light">
-        <Container>
-          <Navbar.Brand onClick={() => { naviate('/') }}>FoodMarket</Navbar.Brand>
-          <Nav className="me-auto">
-            <Nav.Link href="#home"><Link to='/'>Home</Link></Nav.Link>
-            <Nav.Link onClick={() => { naviate('/community/main/1') }}>CommunityMain</Nav.Link>
-            <Nav.Link onClick={() => { naviate('/login') }}>Login</Nav.Link>
-            <Nav.Link onClick={() => { naviate('/register') }}>Register</Nav.Link>
-          </Nav>
-        </Container>
-      </Navbar>
+      <>
+        <Header />
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/funding" element={<FundingPage />} />
+          <Route path="/mypage" element={<MyPage />} />
+          <Route path="/about" element={<AboutPage />} />
+          <Route path="/community/main/:page" element={<CommunityMain />}></Route>
+          <Route path="/community/general/:page" element={<CommunityGeneral />}></Route>
+          <Route path="/community/report/:page" element={<CommunityReport />}></Route>
+          <Route path="/community/review/:page" element={<CommunityReview />}></Route>
+          <Route path="/community/:id" element={<CommunityView />}></Route>
+          <Route path="/community/write" element={<CommunityWrite />}></Route>
+          <Route path="*" element={<div><h1>존재하지 않는 주소입니다.</h1></div>}></Route>
+          <Route path="/search" element={<SearchResultPage />} />
+        </Routes>
+          <Footer/>
+      </>
 
-      <Routes>
-        <Route path="/" element={<CommunityMain />}></Route>
-        <Route path="/detail" element={<div><h1>Detail page</h1></div>}></Route>
-        <Route path="/login" element={<Login />}></Route>
-        <Route path="/register" element={<Register />}></Route>
-        <Route path="/community/main/:page" element={<CommunityMain />}></Route>
-        <Route path="/community/general/:page" element={<CommunityGeneral />}></Route>
-        <Route path="/community/report/:page" element={<CommunityReport />}></Route>
-        <Route path="/community/review/:page" element={<CommunityReview />}></Route>
-        <Route path="/community/:id" element={<CommunityView />}></Route>
-        <Route path="/community/write" element={<CommunityWrite />}></Route> 
-        <Route path="/findid" element={<FindId />}></Route> 
-        <Route path="/findpw" element={<FindPw />}></Route> 
 
-        
-        <Route path="*" element={<div><h1>존재하지 않는 주소입니다.</h1></div>}></Route>
-      </Routes >
     </div>
   )
 }
