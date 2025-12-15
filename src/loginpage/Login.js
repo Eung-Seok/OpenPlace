@@ -52,7 +52,7 @@ function Login() {
                     if(isValid){
                         localStorage.setItem('로그인현황', JSON.stringify(true))
                         localStorage.setItem('계정정보', JSON.stringify(isValid))
-                        navigate('/community/main/1')
+                        navigate('/')
                     } else{
                         setModalFlag1(false);
                         setModalFlag2(false);
