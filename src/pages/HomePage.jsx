@@ -7,11 +7,11 @@ import CommunitySection from "../components/CommunitySection";
 function HomePage() {
     return (
         <>
-            <header/>
+            <header />
             <Hero />
             <FundingSection />
             <CommunitySection />
-            <Footer/>
+
         </>
     );
 }
