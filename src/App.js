@@ -32,6 +32,8 @@ import FindId from './loginpage/FindId';
 import FindPw from './loginpage/FindPw';
 import AccountInit from './data/AccountInit';
 import SearchResultPage from "./pages/SearchResultPage";
+import FundingCreate from "./fundingpage/FundingRegister";
+
 function App() {
 
   let naviate = useNavigate();
@@ -59,6 +61,8 @@ function App() {
           <Route path="/findpw" element={<FindPw />} />
           <Route path="/register" element={<Register />} />
           <Route path="/funding" element={<FundingList/>} />
+          <Route path="/funding/create" element={<FundingCreate />} />
+
         </Routes>
           <Footer/>
       </>
