@@ -1,4 +1,5 @@
 import "./Hero.css";
+import MainSearch from "./MainSearch";
 
 
 function Hero() {
@@ -18,14 +19,7 @@ function Hero() {
                             <strong>참여형 펀딩 플랫폼</strong>입니다.
                         </h4>
                         {/* SEARCH BAR */}
-                        <div className="search-bar mt-4 d-flex">
-                            <input
-                                type="text"
-                                className="form-control hero-search-input"
-                                placeholder="원하는 공공시설 개선 아이디어를 검색해보세요..."
-                            />
-                            <button className="hero-btn hero-search-btn">Search</button>
-                        </div>
+                        <MainSearch/>
 
                     </div>
 
