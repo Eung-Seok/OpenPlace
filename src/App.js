@@ -44,7 +44,6 @@ function App() {
         <Header />
         <Routes>
           <Route path="/" element={<HomePage />} />
-          <Route path="/funding" element={<FundingPage />} />
           <Route path="/mypage" element={<MyPage />} />
           <Route path="/about" element={<AboutPage />} />
           <Route path="/community/main/:page" element={<CommunityMain />}></Route>
@@ -59,6 +58,7 @@ function App() {
           <Route path="/findid" element={<FindId />} />
           <Route path="/findpw" element={<FindPw />} />
           <Route path="/register" element={<Register />} />
+          
         </Routes>
           <Footer/>
       </>
