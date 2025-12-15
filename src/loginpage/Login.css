@@ -11,6 +11,20 @@
     margin-top: 10%;
     align-content: center;
 }
+.find-form-container {
+    width: 40%;
+    position: relative;
+    padding: 27px 15px 8px;
+    border: 1px solid #c5ccd2;
+    border-radius: 8px;
+    box-sizing: border-box;
+    z-index: 1;
+    overflow: auto;
+    margin: 0 auto;
+    margin-top: 10%;
+    margin-bottom: 10%;
+    align-content: center;
+}
 
 .login-id-input-container {
     position: relative;

@@ -38,8 +38,6 @@ function App() {
   useEffect(()=> DataInit, [])
   useEffect(()=> AccountInit, [])
 
-  useEffect(() => DataInit, [])
-
   return (
     <div>
       <>
@@ -57,6 +55,10 @@ function App() {
           <Route path="/community/write" element={<CommunityWrite />}></Route>
           <Route path="*" element={<div><h1>존재하지 않는 주소입니다.</h1></div>}></Route>
           <Route path="/search" element={<SearchResultPage />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/findid" element={<FindId />} />
+          <Route path="/findpw" element={<FindPw />} />
+          <Route path="/register" element={<Register />} />
         </Routes>
           <Footer/>
       </>

@@ -18,7 +18,7 @@ function FindId() {
 
     return (
         <div>
-            <div className='login-form-container'>
+            <div className='find-form-container'>
                 <form onSubmit={(event) => {
                     event.preventDefault();
                     if (idinput.trim() == '') {
