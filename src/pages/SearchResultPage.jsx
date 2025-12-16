@@ -13,7 +13,7 @@ function SearchResultPage() {
 
     // ⭐ 반드시 선언되어야 함
     const reportResults = searchedData.filter(
-        item => item.category === "지역제보"
+        item => item.category === "지역 제보"
     );
 
     const freeBoardResults = searchedData.filter(
