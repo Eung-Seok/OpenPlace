@@ -1,6 +1,10 @@
 import { useState } from "react";
 import { useNavigate } from "react-router";
 function FindPw() {
+    const loginSubmitButton = document.getElementById('login-submit-button')
+    const idinputtext = document.getElementById('id')
+    const nameinputtext = document.getElementById('name');
+    const pwinputtext= document.getElementById('pw')
     let [idFocus1, setIdFocus1] = useState(false);
     let [pwFocus1, setPwFocus1] = useState(false);
     let [nameFocus1, setNameFocus1] = useState(false);
@@ -10,7 +14,6 @@ function FindPw() {
     let [idinput, setIdInput] = useState('');
     let [pwinput, setPwInput] = useState('');
     let [nameinput, setNameInput] = useState('');
-    let loginSubmitButton = document.getElementById('login-submit-button')
     let [modalFlag1, setModalFlag1] = useState(false);
     let [modalFlag2, setModalFlag2] = useState(false);
     let [modalFlag3, setModalFlag3] = useState(false);
@@ -46,12 +49,12 @@ function FindPw() {
                 }}>
                     <div className='login-input-container'>
                         <div className={'login-id-input-container ' + (idFocus1 ? 'focus1 ' : ' ') + (idFocus2 ? 'focus2 ' : ' ')} >
-                            <input type='text' value={idinput} id='id' name='id' className='login-id-input' onFocus={(event) => { setIdFocus1(true); setIdFocus2(true) }} onBlur={() => {
+                            <input type='text' tabIndex={1} value={idinput} id='id' name='id' className='login-id-input' onFocus={(event) => { setIdFocus1(true); setIdFocus2(true) }} onBlur={() => {
                                 setIdFocus1(false)
                                 if (idinput.trim() == '') {
                                     setIdFocus2(false)
                                 }
-                                loginSubmitButton.focus();
+                                nameinputtext.focus()
                             }} onChange={(event) => {
                                 setIdInput(event.target.value);
                                 if (idinput.trim() != '' && pwinput.trim() != '' && nameinput.trim() == '') {
@@ -64,12 +67,12 @@ function FindPw() {
                         </div>
 
                         <div className={'login-name-input-container ' + (nameFocus1 ? 'focus1 ' : ' ') + (nameFocus2 ? 'focus2 ' : ' ')} >
-                            <input type='text' value={nameinput} id='name' name='name' className='login-name-input' onFocus={(event) => { setNameFocus1(true); setNameFocus2(true) }} onBlur={(event) => {
+                            <input type='text' tabIndex={2} value={nameinput} id='name' name='name' className='login-name-input' onFocus={(event) => { setNameFocus1(true); setNameFocus2(true) }} onBlur={(event) => {
                                 setNameFocus1(false)
                                 if (nameinput.trim() == '') {
                                     setNameFocus2(false)
                                 }
-                                loginSubmitButton.focus();
+                                pwinputtext.focus()
                             }} onChange={(event) => {
                                 setNameInput(event.target.value);
                                 if (idinput.trim() != '' && pwinput.trim() != '' && nameinput.trim() == '') {
@@ -82,7 +85,7 @@ function FindPw() {
                         </div>
 
                         <div className={'login-pw-input-container ' + (pwFocus1 ? 'focus1 ' : ' ') + (pwFocus2 ? 'focus2' : ' ')}>
-                            <input type='text' value={pwinput} id='pw' name='pw' className='login-pw-input' onFocus={() => { setPwFocus1(true); setPwFocus2(true) }} onBlur={() => {
+                            <input type='text' tabIndex={3} value={pwinput} id='pw' name='pw' className='login-pw-input' onFocus={() => { setPwFocus1(true); setPwFocus2(true) }} onBlur={() => {
                                 setPwFocus1(false)
                                 if (pwinput.trim() == '') {
                                     setPwFocus2(false)
