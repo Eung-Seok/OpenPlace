@@ -49,7 +49,7 @@ function FindPw() {
                 }}>
                     <div className='login-input-container'>
                         <div className={'login-id-input-container ' + (idFocus1 ? 'focus1 ' : ' ') + (idFocus2 ? 'focus2 ' : ' ')} >
-                            <input type='text' value={idinput} id='id' name='id' className='login-id-input' onFocus={(event) => { setIdFocus1(true); setIdFocus2(true) }} onBlur={() => {
+                            <input type='text' tabIndex={1} value={idinput} id='id' name='id' className='login-id-input' onFocus={(event) => { setIdFocus1(true); setIdFocus2(true) }} onBlur={() => {
                                 setIdFocus1(false)
                                 if (idinput.trim() == '') {
                                     setIdFocus2(false)
@@ -67,7 +67,7 @@ function FindPw() {
                         </div>
 
                         <div className={'login-name-input-container ' + (nameFocus1 ? 'focus1 ' : ' ') + (nameFocus2 ? 'focus2 ' : ' ')} >
-                            <input type='text' value={nameinput} id='name' name='name' className='login-name-input' onFocus={(event) => { setNameFocus1(true); setNameFocus2(true) }} onBlur={(event) => {
+                            <input type='text' tabIndex={2} value={nameinput} id='name' name='name' className='login-name-input' onFocus={(event) => { setNameFocus1(true); setNameFocus2(true) }} onBlur={(event) => {
                                 setNameFocus1(false)
                                 if (nameinput.trim() == '') {
                                     setNameFocus2(false)
@@ -85,7 +85,7 @@ function FindPw() {
                         </div>
 
                         <div className={'login-pw-input-container ' + (pwFocus1 ? 'focus1 ' : ' ') + (pwFocus2 ? 'focus2' : ' ')}>
-                            <input type='text' value={pwinput} id='pw' name='pw' className='login-pw-input' onFocus={() => { setPwFocus1(true); setPwFocus2(true) }} onBlur={() => {
+                            <input type='text' tabIndex={3} value={pwinput} id='pw' name='pw' className='login-pw-input' onFocus={() => { setPwFocus1(true); setPwFocus2(true) }} onBlur={() => {
                                 setPwFocus1(false)
                                 if (pwinput.trim() == '') {
                                     setPwFocus2(false)

@@ -39,7 +39,7 @@ function FindId() {
                 }}>
                     <div className='login-input-container'>
                         <div className={'login-id-input-container ' + (idFocus1 ? 'focus1 ' : ' ') + (idFocus2 ? 'focus2 ' : ' ')} >
-                            <input type='text' value={idinput} id='id' name='id' className='login-id-input' onFocus={(event) => { setIdFocus1(true); setIdFocus2(true) }} onBlur={() => {
+                            <input type='text' tabIndex={1} value={idinput} id='id' name='id' className='login-id-input' onFocus={(event) => { setIdFocus1(true); setIdFocus2(true) }} onBlur={() => {
                                 setIdFocus1(false)
                                 if (idinput.trim() == '') {
                                     setIdFocus2(false)
@@ -56,7 +56,7 @@ function FindId() {
                             <label for='id' className='login-text-label' aria-hidden='true'>이름</label>
                         </div>
                         <div className={'login-pw-input-container ' + (pwFocus1 ? 'focus1 ' : ' ') + (pwFocus2 ? 'focus2' : ' ')}>
-                            <input type='text' value={pwinput} id='pw' name='pw' className='login-pw-input' onFocus={() => { setPwFocus1(true); setPwFocus2(true) }} onBlur={() => {
+                            <input type='text' tabIndex={2} value={pwinput} id='pw' name='pw' className='login-pw-input' onFocus={() => { setPwFocus1(true); setPwFocus2(true) }} onBlur={() => {
                                 setPwFocus1(false)
                                 if (pwinput.trim() == '') {
                                     setPwFocus2(false)
