@@ -40,13 +40,14 @@ function Header() {
                 {/* NAV */}
                 <nav>
                     <ul className="d-flex gap-4 mb-0">
-                        <li><Link to="/funding">Funding</Link></li>
-                        <li><Link to="/community/main/1">Community</Link></li>
-                        <li><Link to="/about">About</Link></li>
+                        <li><Link to="/funding" className="nav-link">Funding</Link></li>
+                        <li><Link to="/community/main" className="nav-link">Community</Link></li>
+                        <li><Link to="/about" className="nav-link">About</Link></li>
+
                         {isLogin ? (
                             <>
                                 <li>
-                                    <Link to="/mypage" className="nav-link" >MyPage</Link>
+                                    <Link to="/mypage" className="nav-link">MyPage</Link>
                                 </li>
                                 <li>
                                     <button
@@ -58,7 +59,7 @@ function Header() {
                                 </li>
                             </>
                         ) : (
-                            <li><Link to="/login">Log-In</Link></li>
+                            <li><Link to="/login" className="nav-link">Log-In</Link></li>
                         )}
                     </ul>
                 </nav>
