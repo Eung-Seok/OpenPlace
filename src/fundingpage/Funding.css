@@ -8,13 +8,9 @@
     /* font-family: 'Pretendard', sans-serif; */
 }
 
-.funding-menu {
-    /* background-color: #eeeeee; */
-    /* background-color: #eff5f4; */
-    /* background-color: #f2faf9; */
+/* .funding-menu {
+
     background-color: #fff;
-    /* box-shadow: 0 2px 4px rgba(0,0,0,0.05); */
-    /* box-shadow: 0 -4px 8px rgba(0,0,0,0.1); */
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -24,9 +20,7 @@
     margin: 0 auto;
     font-size: 25px;
     padding: 18px 50px;
-    /* border: 1px solid #a7a7a7; */
     border-bottom: none;
-    /* border-bottom: 1px solid beige; */
     position: relative;
     justify-content: center;
 }
@@ -77,7 +71,6 @@
 }
 
 .funding-mega-inner {
-    /* margin-left: 265px; */
     margin-left: 55px;
     width: 1200px;
     padding: 30px 0;
@@ -139,16 +132,16 @@
 
 .funding-mega-column p:hover {
     text-decoration: underline;
-}
+} */
 
 .funding-explan {
     transform: translateY(3px);
     margin: 0 auto;
     font-size: 45px;
-    margin-left: 77px;
+    margin-left: 0;
 }
 
-.funding-choose {
+/* .funding-choose {
     width: 250px;
     height: 50px;
     margin-right: 77px;
@@ -181,8 +174,42 @@
 
 .funding-menu-center a:hover::after {
     transform: scaleX(1);
+} */
+
+/* 공통 메뉴 부분 */
+* {
+    font-family: "Poppins", sans-serif;
 }
 
+.funding-tabs {
+    display: flex;
+    gap: 10px;
+    margin: 40px 0;
+}
+
+.funding-tab {
+    width: 150px;
+    height: 60px;
+    padding: 10px 18px;
+    border: 1px solid #09947d;
+    background: #fff;
+    color: #09947d;
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+.funding-tab.active {
+    background: #09947d;
+    color: #fff;
+}
+
+.funding-Pagination {
+    margin: 0 auto;
+}
+
+.funding-btn-success {
+    transform: translateY(18px);
+}
 
 .funding-detail-container,
 .funding-form-container,
@@ -362,12 +389,13 @@
 
 .funding-filter {
     width: 100%;
-    max-width: 1200px;
-    height: 145px;
+    max-width: 1300px;
+    height: 50px;
     margin: 0 auto;
-    display: flex;
+    /* display: flex; */
     justify-content: space-between;
     align-items: flex-end;
+    display: flex;
 }
 
 .funding-more-actions {
@@ -606,18 +634,18 @@
 
 .funding-support-explain h2 {
     font-size: 44px;
-    margin-top: 50px;
+    margin-top: -20px;
     margin-bottom: 10px;
 }
 
 .funding-support-explain .funding-icon {
-    margin-bottom: 20px;
+    margin-bottom: 30px;
 }
 
 /* 펀딩 서포트 이미지 가로길이 설정 위치 */
 .funding-support-header {
     width: 1100px;
-    margin-bottom: 77px;
+    margin-bottom: 20px;
     display: flex;
     align-items: center;
     gap: -10px;
@@ -787,7 +815,8 @@
 .funding-support-subtitle {
     text-align: left;
     font-size: 25px;
-    width: 777px;
+    font-weight: 500;
+    width: 642px;
     position: relative;
     left: 20px;
 }

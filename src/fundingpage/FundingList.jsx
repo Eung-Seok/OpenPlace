@@ -4,7 +4,10 @@ import "./Funding.css";
 import { FaMapMarkerAlt } from "react-icons/fa";
 import { IoMenu } from "react-icons/io5";
 import FundingBox from "./component/FundingBox.js"
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
+import { useNavigate, useParams } from "react-router";
+import Button from 'react-bootstrap/Button';
+
 
 function FundingList() {
 
@@ -31,9 +34,23 @@ function FundingList() {
     const getCurrentAmount = (item) => Math.floor(item.goalAmount * item.rate / 1000000);
     const getGoalAmount = (item) => Math.floor(item.goalAmount / 10000);
 
+    const tabs = [
+        "전체 카테고리",
+        "생활·편의",
+        "문화·교육",
+        "안전",
+        "환경",
+        "체육·여가",
+        "교통시설",
+    ];
+
+    const [activeTab, setActiveTab] = useState(tabs[0]);
+
     return (
         <div className="funding-bg-color">
-            <nav className="funding-menu">
+            <section className="funding-filter-container">
+
+                {/* <nav className="funding-menu">
 
                 <div className="funding-menu-left">
                     <IoMenu className="funding-menu-icon" />
@@ -45,67 +62,104 @@ function FundingList() {
                     <Link to="/categories">카테고리</Link>
                     <Link to="/funding/support">후원하기</Link>
                     <Link to="/funding/create">등록하기</Link>
+                </div> */}
+
+                {/* <div class="funding-tabs">
+                    <button class="tab active" onClick={() => navigate('/funding/main/1')}>전체 카테고리</button>
+                    <button class="tab" onClick={() => navigate('/funding/general/1')}>생활·편의</button>
+                    <button class="tab" onClick={() => navigate('/funding/report/1')}>문화·교육</button>
+                    <button class="tab" onClick={() => navigate('/funding/review/1')}>안전</button>
+                    <button class="tab" onClick={() => navigate('/funding/review/1')}>환경</button>
+                    <button class="tab" onClick={() => navigate('/funding/review/1')}>체육·여가</button>
+                    <button class="tab" onClick={() => navigate('/funding/review/1')}>교통시설</button>
+                </div> */}
+
+                {/* <div class="funding-tabs">
+                    <button class="funding-tab active">전체 카테고리</button>
+                    <button class="funding-tab">생활·편의</button>
+                    <button class="funding-tab">문화·교육</button>
+                    <button class="funding-tab">안전</button>
+                    <button class="funding-tab">환경</button>
+                    <button class="funding-tab">체육·여가</button>
+                    <button class="funding-tab">교통시설</button>
+                </div> */}
+
+                <div className="funding-tabs">
+                    {tabs.map((tab) => (
+                        <button
+                            key={tab}
+                            className={`funding-tab ${activeTab === tab ? "active" : ""}`}
+                            onClick={() => setActiveTab(tab)}
+                        >
+                            {tab}
+                        </button>
+                    ))}
                 </div>
 
-                <div className="funding-menu-right" />
+                {/* <div className="funding-menu-right" />
 
-                <div className="funding-mega-menu">
-                    <div className="funding-mega-inner">
-                        <div className="funding-mega-column">
-                            <h4>홈</h4>
-                            <div className="funding-mega-items">
-                                <p>전체목록</p>
-                                <p>인기순</p>
-                                <p>최신순</p>
-                            </div>
+            <div className="funding-mega-menu">
+                <div className="funding-mega-inner">
+                    <div className="funding-mega-column">
+                        <h4>홈</h4>
+                        <div className="funding-mega-items">
+                            <p>전체목록</p>
+                            <p>인기순</p>
+                            <p>최신순</p>
                         </div>
+                    </div>
 
-                        <div className="funding-mega-column funding-mega-funding">
-                            <h4>나의 펀딩</h4>
-                            <div className="funding-mega-items">
-                                <p>후원금</p>
-                                <p>후원 내역</p>
-                                <p>진행 중인 펀딩</p>
-                            </div>
+                    <div className="funding-mega-column funding-mega-funding">
+                        <h4>나의 펀딩</h4>
+                        <div className="funding-mega-items">
+                            <p>후원금</p>
+                            <p>후원 내역</p>
+                            <p>진행 중인 펀딩</p>
                         </div>
+                    </div>
 
-                        <div className="funding-mega-column funding-mega-category">
-                            <h4>카테고리</h4>
-                            <div className="funding-mega-items">
-                                <p>생활·편의</p>
-                                <p>안전</p>
-                                <p>환경</p>
-                                <p>문화·체육</p>
-                                <p>교통시설</p>
-                            </div>
+                    <div className="funding-mega-column funding-mega-category">
+                        <h4>카테고리</h4>
+                        <div className="funding-mega-items">
+                            <p>생활·편의</p>
+                            <p>안전</p>
+                            <p>환경</p>
+                            <p>문화·체육</p>
+                            <p>교통시설</p>
                         </div>
+                    </div>
 
-                        <div className="funding-mega-column">
-                            <h4>후원하기</h4>
-                            <div className="funding-mega-items">
-                                <p>금액 충전</p>
-                                <p>정기 후원</p>
-                                <p>후원 가이드</p>
-                            </div>
+                    <div className="funding-mega-column">
+                        <h4>후원하기</h4>
+                        <div className="funding-mega-items">
+                            <p>금액 충전</p>
+                            <p>정기 후원</p>
+                            <p>후원 가이드</p>
                         </div>
+                    </div>
 
-                        <div className="funding-mega-column funding-mega-register">
-                            <h4>등록하기</h4>
-                            <div className="funding-mega-items">
-                                <p>펀딩 등록</p>
-                                <p>아이디어 제안</p>
-                                <p>진행 절차 안내</p>
-                            </div>
+                    <div className="funding-mega-column funding-mega-register">
+                        <h4>등록하기</h4>
+                        <div className="funding-mega-items">
+                            <p>펀딩 등록</p>
+                            <p>아이디어 제안</p>
+                            <p>진행 절차 안내</p>
                         </div>
                     </div>
                 </div>
-            </nav>
-            {/* 펀딩 공통 메뉴바 */}
+            </div>
+        </nav> */}
+                {/* 펀딩 공통 메뉴바 */}
 
-            <section className="funding-filter-container">
                 <div className="funding-filter">
                     <span className="funding-explan">공공시설 개선 현황</span>
-                    <select className="funding-choose">
+                    <div>
+                        {/* <Button style={{ float: 'right', clear: 'both', marginBottom: '16px' }} variant="success" onClick={() => navigate('/funding/write')}>등록하기</Button> */}
+                        <Link to="/funding/create">
+                            <Button type="button" className="funding-btn-success btn-success" style={{ float: 'right', clear: 'both', marginBottom: '16px', fontSize: '25px' }}>등록하기</Button>
+                        </Link>
+                    </div>
+                    {/* <select className="funding-choose">
                         <option selected>전체 카테고리</option>
                         <option>생활·편의</option>
                         <option>문화·교육</option>
@@ -120,7 +174,7 @@ function FundingList() {
                         <option>마감 임박</option>
                         <option>달성률 높은순</option>
                         <option>참여 많은순</option>
-                    </select>
+                    </select> */}
                 </div>
             </section>
 
@@ -181,7 +235,7 @@ function FundingList() {
                     </div>
                 </div>
             </section>
-        </div>
+        </div >
     );
 }
 
