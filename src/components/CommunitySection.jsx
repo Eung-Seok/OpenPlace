@@ -17,9 +17,9 @@ function CommunitySection() {
         <section className="community-section">
             <div className="container">
                 <div className="community-section-header">
-                    <h3 className="community-title">
-                        지역 문제 TOP5
-                    </h3>
+                    <h2 className="community-title">
+                        커뮤니티 공감 베스트 
+                    </h2>
                     <button
                         className="community-more-btn"
                         onClick={() => navigate("/community/main/1")}
