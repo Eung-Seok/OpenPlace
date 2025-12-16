@@ -2,9 +2,11 @@
 import { useEffect, useState } from "react";
 import FundingBox from "../fundingpage/component/FundingBox";
 import "./FundingSection.css";
+import { useNavigate } from "react-router";
 
 function FundingSection() {
     const [fundingList, setFundingList] = useState([]);
+    const navigate = useNavigate();
 
     useEffect(() => {
         const stored = JSON.parse(
@@ -24,7 +26,13 @@ function FundingSection() {
         <section className="funding-section">
             <div className="funding-section-header">
                 <h2>Funding Projects</h2>
-                <p>시민 참여로 변화가 시작되는 프로젝트</p>
+                <button
+                    className="funding-more-btn"
+                    onClick={() => navigate("/funding")}
+                >
+                    더보기 →
+                </button>
+
             </div>
 
             <div className="funding-section-grid">
