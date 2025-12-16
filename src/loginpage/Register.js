@@ -272,7 +272,7 @@ function Register() {
                         <div className={'register-form-item birthday '
                             + (nowFocus == 'birthday' ? 'focus ' : ' ') + (error.birthday ? 'error' : ' ')
                         } >
-                            <input type='text' value={form.birthday} id='birthday' name='birthday' className='register-input' placeholder="생년월일 8자리" onClick={() => {
+                            <input type='text' value={form.birthday} id='birthday' name='birthday' className='register-input' placeholder="생년월일 6자리" onClick={() => {
                                 setNowFocus('birthday')
                             }} onChange={(event) => { setForm({ ...form, birthday: event.target.value }) }} onBlur={() => {
                                 setNowFocus('')
