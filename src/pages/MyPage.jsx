@@ -1,4 +1,5 @@
 import React from "react";
+import "./MyPage.css";
 
 function MyPage() {
     return (
@@ -8,11 +9,6 @@ function MyPage() {
                 {/* 프로필 정보 */}
                 <div className="profile-box">
                     <div className="profile-left">
-                        <img
-                            src="https://source.unsplash.com/100x100/?profile"
-                            alt="profile"
-                            className="profile-img"
-                        />
                         <div>
                             <h3>안송이 님</h3>
                             <p>회원 등급: 일반 회원</p>
@@ -84,7 +80,6 @@ function MyPage() {
                     <button className="logout-btn">로그아웃</button>
                 </div>
             </section>
-       
     );
 }
 
