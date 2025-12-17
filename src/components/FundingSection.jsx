@@ -30,7 +30,7 @@ function FundingSection() {
 
                     <button
                         className="funding-section-more-btn"
-                        onClick={() => navigate("/funding")}
+                        onClick={() => navigate("/funding/main/1")}
                         aria-label="펀딩 더보기"
                     >
                         <FaChevronRight />
