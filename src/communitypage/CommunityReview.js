@@ -3,9 +3,11 @@ import Button from 'react-bootstrap/Button';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './CommunityMain.css'
 import Pagination from 'react-bootstrap/Pagination';
-import { useNavigate, useParams } from "react-router";
+import { useLocation, useNavigate, useParams } from "react-router";
 
 function CommunityReview() {
+    let nowpage = useLocation();
+    let nowLogin = JSON.parse(localStorage.getItem('로그인현황'))
     let navigate = useNavigate();
     let { page } = useParams();
     let List = JSON.parse(localStorage.getItem('프로젝트 후기'));
@@ -40,7 +42,14 @@ function CommunityReview() {
             </div>
 
             <div>
-                <Button style={{ float: 'right', clear: 'both', marginBottom: '16px' }} variant="success" onClick={() => navigate('/community/write')}>글쓰기</Button>
+                <Button style={{ float: 'right', clear: 'both', marginBottom: '16px' }} variant="success" onClick={() => {
+                    if(nowLogin){
+                        navigate('/community/write')
+                    }else{
+                        localStorage.setItem('마지막 주소', JSON.stringify(nowpage.pathname))
+                        navigate('/login')
+                    }
+                    }}>글쓰기</Button>
             </div>
             <div style={{ clear: 'both' }}>
                 {data.map((item, index) => (

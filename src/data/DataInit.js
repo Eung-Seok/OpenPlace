@@ -22,7 +22,7 @@ function DataInit(){
             dataList.push({
             title:'벤치 설치 제안 드립니다',
             content:'산책로 중간에 벤치 부족한 구간이 있어요.',
-            author:'김응석',
+            author:'백종진',
             category:'지역 제보',
             views:i,
             likes:i,
@@ -34,7 +34,7 @@ function DataInit(){
             dataList.push({
             title:'버스정류장 쉘터 보수 요청',
             content:'비 새는 정류장이 있어 개선이 필요합니다.',
-            author:'백종진',
+            author:'김응석',
             category:'프로젝트 후기',
             views:i,
             likes:i,
@@ -53,10 +53,18 @@ function DataInit(){
     reviewList = dataList.filter((item) =>{
         return item.category == '프로젝트 후기'
     })
-    localStorage.setItem('통합데이터', JSON.stringify(dataList))
-    localStorage.setItem('자유게시판', JSON.stringify(generalList))
-    localStorage.setItem('지역 제보', JSON.stringify(reportList))
-    localStorage.setItem('프로젝트 후기', JSON.stringify(reviewList))
+    if(localStorage.getItem('통합데이터') == null){
+        localStorage.setItem('통합데이터', JSON.stringify(dataList))
+    }
+    if(localStorage.getItem('자유게시판') ==null){
+        localStorage.setItem('자유게시판', JSON.stringify(generalList))
+    }
+    if(localStorage.getItem('지역 제보') ==null){
+        localStorage.setItem('지역 제보', JSON.stringify(reportList))
+    }
+    if(localStorage.getItem('프로젝트 후기') ==null){
+        localStorage.setItem('프로젝트 후기', JSON.stringify(reviewList))
+    }
 }
 
 export default DataInit
