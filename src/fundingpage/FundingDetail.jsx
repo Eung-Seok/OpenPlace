@@ -11,10 +11,10 @@ import FundingAmountPlus from "./FundingAmountPlus.jsx";
 function FundingDetail() {
 
     const location = useLocation();
-    const {id} = useParams();
+    const { id } = useParams();
 
     let fundingData = JSON.parse(localStorage.getItem('펀딩데이터'))
-    let data = fundingData.find((item)=>{
+    let data = fundingData.find((item) => {
         return item.id == id;
     })
 
@@ -69,7 +69,8 @@ function FundingDetail() {
                                             }
                                             setLiked(!liked);
                                         }}
-                                        style={{ cursor: "pointer",
+                                        style={{
+                                            cursor: "pointer",
                                             color: liked ? "red" : "white",
                                             WebkitTextStroke: "2px black",
                                             fontSize: "50px",
@@ -84,7 +85,7 @@ function FundingDetail() {
 
                             </div>
 
-                            
+
 
                             {/* <p className="funding-support-amount-current">
                                 {item.currentAmount
@@ -116,7 +117,7 @@ function FundingDetail() {
                                 </div>
 
                                 <div className="funding-support-button">
-                                    <Link to="/funding/support">
+                                    <Link to={"/funding/support/" + id}>
                                         <button className="">후원하기</button>
                                     </Link>
                                 </div>

@@ -11,25 +11,20 @@ import Button from 'react-bootstrap/Button';
 
 function FundingList() {
 
-    useEffect(() => {
-        if (!localStorage.getItem('펀딩데이터')) {
-            FundingDataInit();
-        }
-    }, []);
+    let navigate = useNavigate();
+    let {page} = useParams();
+    let fundingData = JSON.parse(localStorage.getItem('펀딩데이터'))
+    let pages = [];
+    for (let i = 1; i <= (fundingData.length - 1) / 9 + 1; i++) {
+        pages.push(i);
+    }
 
+    let usingData = [];
+    for (let i = (page-1)*9; i < page*9; i++) {
+        if (fundingData[i] != undefined)
+            usingData.push(fundingData[i]);
+    }
 
-    // 페이지 쪽수 기능
-    const [currentPage, setCurrentPage] = useState(1);
-    const totalPages = 5;
-
-
-    const fundingData = JSON.parse(localStorage.getItem('펀딩데이터'))
-
-    // 페이지 넘기기 카드 기능 
-    const itemsPerPage = 9;
-    const startIdx = (currentPage - 1) * itemsPerPage;
-    const endIdx = startIdx + itemsPerPage;
-    const currentItems = fundingData.slice(startIdx, endIdx);
     const tabs = [
         "전체 카테고리",
         "생활·편의",
@@ -39,13 +34,11 @@ function FundingList() {
         "체육·여가",
         "교통시설",
     ];
-
     const [activeTab, setActiveTab] = useState(tabs[0]);
-
     return (
         <div className="funding-bg-color">
             <section className="funding-filter-container">
-                
+
                 <div className="funding-tabs">
                     {tabs.map((tab) => (
                         <button
@@ -74,28 +67,22 @@ function FundingList() {
             <section className="funding-funding-container">
                 <hr />
                 <div className="funding-funding-grid">
-                    {currentItems.map((item) => {
-                        return (
-                            <FundingBox
-                                key={item.id}
-                                item={item}
-                            />
-                        );
-                    })}
+                    {
+                        usingData.map((item) => {
+                            return <FundingBox item={item} />
+                        })
+                    }
                 </div>
                 <hr className="card-bottom-bar" />
 
                 <div className="funding-page-box">
-                    {Array.from({ length: totalPages }, (_, idx) => {
-                        const pageNum = idx + 1;
+                    {pages.map((item, index) => {
+                        const pageNum = index + 1;
                         return (
                             <a
-                                key={pageNum}
-                                href={`#${pageNum}`}
-                                className={`funding-page ${currentPage === pageNum ? 'active' : ''}`}
+                                className={`funding-page ${pageNum == page ? 'active' : ''}`}
                                 onClick={(e) => {
-                                    e.preventDefault();
-                                    setCurrentPage(pageNum);
+                                    navigate('/funding/main/' + pageNum)
                                 }}
                             >
                                 {pageNum}
@@ -111,7 +98,28 @@ function FundingList() {
                             className="funding-more-btn"
                             onClick={(e) => {
                                 e.preventDefault();
-                                if (currentPage < totalPages) setCurrentPage(currentPage + 1);
+                                if ( 1 < page) {
+                                    navigate('/funding/main/' + (Number(page) - 1))
+                                }else{
+                                    alert('첫번째 페이지입니다')
+                                };
+                            }}
+                        >
+                            이전 페이지
+                        </a>
+
+                    </div>
+                    <div className="funding-more-actions">
+                        <a
+                            href="#"
+                            className="funding-more-btn"
+                            onClick={(e) => {
+                                e.preventDefault();
+                                if (page < pages.length) {
+                                    navigate('/funding/main/' + (Number(page) + 1))
+                                }else{
+                                    alert('마지막 페이지입니다')
+                                };
                             }}
                         >
                             다음 페이지
