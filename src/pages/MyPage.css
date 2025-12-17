@@ -4,7 +4,6 @@
 
 .mypage {
     padding: 60px 0;
-    background-color: #f8f9fa;
 }
 
 .mypage-container {
@@ -20,7 +19,7 @@
    Title
 ================================================= */
 .profile-btn svg {
-    color: #4caf50;
+    color: #066b59;
 }
 
 .mypage-title {
