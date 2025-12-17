@@ -1,13 +1,18 @@
 import { FaMapMarkerAlt } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
 
+function FundingBox({item}) {
+    const navigate = useNavigate();
 
-function FundingBox({ item}) {
+    const handleClick = () => {
+        navigate("/funding/detail/" + item.id);
+    };
+
     return (
         <div
-
             key={item.id}
             className="funding-funding-card"
-            onClick={() => (window.location.href = `/funding/${item.id}`)}
+            onClick={handleClick}
         >
             <img src={item.imgPath} alt={item.title} className="funding-detail-img" />
             <h3 className="funding-title">{item.title}</h3>
@@ -33,7 +38,7 @@ function FundingBox({ item}) {
                     </div>
                     <div className="funding-rate-column">
                         <span className="funding-rate-text">목표금액</span>
-                        <span className="funding-rate-amount">{item.goalAmount / 10000}만원</span>
+                        <span className="funding-rate-amount">{item.goalAmount/10000}만원</span>
                     </div>
                     <div className="funding-rate-column">
                         <span className="funding-rate-text">남은기간</span>

@@ -1,4 +1,4 @@
-import { Link } from "react-router";
+import { Link, useLocation } from "react-router";
 import { useState, useEffect } from "react";
 import "./Header.css";
 
@@ -14,6 +14,7 @@ function Header() {
         window.location.href = "/"; // 메인으로 이동
     };
     const [scrolled, setScrolled] = useState(false);
+    const nowpage = useLocation();
 
     useEffect(() => {
         const handleScroll = () => {
@@ -59,7 +60,9 @@ function Header() {
                                 </li>
                             </>
                         ) : (
-                            <li><Link to="/login" className="nav-link">Log-In</Link></li>
+                            <li onClick={() => {
+                                localStorage.setItem('마지막 주소', JSON.stringify(nowpage.pathname))
+                            }}><Link to="/login" className="nav-link">Log-In</Link></li>
                         )}
                     </ul>
                 </nav>

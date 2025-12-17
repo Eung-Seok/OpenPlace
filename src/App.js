@@ -31,6 +31,8 @@ import FindPw from './loginpage/FindPw';
 import AccountInit from './data/AccountInit';
 import SearchResultPage from "./pages/SearchResultPage";
 import FundingCreate from "./fundingpage/FundingRegister";
+import FundingDetail from "./fundingpage/FundingDetail";
+import FundingSupport from "./fundingpage/FundingSupport";
 
 function App() {
 
@@ -58,8 +60,11 @@ function App() {
           <Route path="/findid" element={<FindId />} />
           <Route path="/findpw" element={<FindPw />} />
           <Route path="/register" element={<Register />} />
-          <Route path="/funding" element={<FundingList/>} />
+          <Route path="/funding/main/:page" element={<FundingList/>} />
           <Route path="/funding/create" element={<FundingCreate />} />
+          <Route path="/funding/detail/:id" element={<FundingDetail />} />
+          <Route path="/funding/support/:id" element={<FundingSupport />} />
+
 
         </Routes>
           <Footer/>

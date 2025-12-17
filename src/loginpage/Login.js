@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router';
 
 // 스타일을 위한 간단한 객체 (실제로는 CSS 파일이나 styled-components를 사용합니다)
 function Login() {
+    let lastpage = JSON.parse(localStorage.getItem('마지막 주소'))
     const loginSubmitButton = document.getElementById('login-submit-button')
     const idinputtext = document.getElementById('id')
     const pwinputtext = document.getElementById('pw');
@@ -54,8 +55,8 @@ function Login() {
                     if (isValid) {
                         localStorage.setItem('로그인현황', JSON.stringify(true))
                         localStorage.setItem('계정정보', JSON.stringify(isValid))
-                        navigate('/')
-                    } else{
+                        navigate(lastpage)
+                    } else {
                         setModalFlag1(false);
                         setModalFlag2(false);
                         setModalFlag3(true);
