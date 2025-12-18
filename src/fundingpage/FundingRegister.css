@@ -1,0 +1,354 @@
+* {
+    font-family: "Poppins", sans-serif;
+}
+
+
+body {
+    background: #fff;
+}
+
+.funding-register-container {
+    width: 1200px;
+    height: auto;
+    margin: 0 auto;
+}
+
+.funding-project-container {
+    /* width: 80%; */
+    height: 100px;
+    margin: 80px auto;
+    /* box-shadow: 0 6px 28px rgba(0, 0, 0, 0.12); */
+    /* border-radius: 12px; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.funding-input-container {
+    position: relative;
+    width: 80%;
+    padding: 50px;
+    box-shadow: 0 6px 28px rgba(0, 0, 0, 0.12);
+    border-radius: 12px;
+    margin: 0 auto 150px;
+    background: #fff;
+    overflow: hidden;
+}
+
+.funding-input-container::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 70px;
+    background: #09947d;
+    z-index: 0;
+}
+
+.funding-register-explan span {
+    font-weight: 777;
+}
+
+
+.funding-your-idea {
+    font-size: 33px;
+    font-weight: 777;
+    margin-bottom: 20px;
+}
+
+.funding-register-explan {
+    margin-bottom: 40px;
+}
+
+/* 여백  */
+.funding-my-idea {
+    font-weight: 600;
+    margin-top: 20px;
+}
+
+.funding-amount-label {
+    display: inline-block;
+    margin-top: 33px;
+}
+
+.funding-my-idea span {
+    color: rgb(245, 104, 104);
+}
+
+.funding-register-container textarea {
+    width: 60%;
+    height: 100px;
+    font-size: 15px;
+    margin-bottom: 50px;
+    display: flex;
+}
+
+/* .funding-amount-time {
+    border: 1px solid rgb(141, 139, 139);
+    width: 300px;
+    height: 100px;
+} */
+
+.funding-footer-setting {
+    margin-top: 100px;
+    text-align: center;
+}
+
+.funding-edit-btn {
+    background: #066b59;
+    color: #ffffff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    width: 77px;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+/* 도움말 기능 */
+
+.textarea-wrapper {
+    display: flex;
+    gap: 20px;
+}
+
+.textarea-wrapper-width2 {
+    width: 905px;
+}
+
+.textarea-wrapper-width {
+    width: 905px;
+}
+
+.textarea-wrapper textarea {
+    width: 60%;
+    height: 150px;
+    font-size: 15px;
+    margin-bottom: 30px;
+}
+
+.textarea-wrapper span {
+    right: 10px;
+    width: 18px;
+    height: 18px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #017cad;
+    border-radius: 100%;
+
+    color: white;
+    font-size: 14px;
+    font-weight: 900;
+
+    cursor: pointer;
+}
+
+.funding-tooltip {
+    position: relative;
+    display: inline-flex;
+    cursor: pointer;
+}
+
+.funding-tooltip-text p {
+    color: #363636;
+    margin: 0;
+    padding: 0;
+}
+
+.funding-tooltip .funding-tooltip-text {
+    visibility: hidden;
+    width: 260px;
+    height: 210px;
+    background-color: #cceffc;
+    color: #4F4E50;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    padding: 10px;
+    border-radius: 5px;
+    position: absolute;
+    z-index: 1;
+    top: 50%;
+    left: 110%;
+    transform: translateY(-50%);
+    font-size: 16px;
+    line-height: 1.2;
+    margin-left: 10px;
+}
+
+.funding-tooltip:hover .funding-tooltip-text {
+    visibility: visible;
+}
+
+.funding-help-amount {
+    display: inline-block;
+    margin-left: 20px;
+}
+
+.funding-amount-time {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+/* 금액 입력 */
+.funding-amount-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.funding-amount-input {
+    width: 149.34px;
+    padding: 10px 12px;
+    font-size: 16px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+}
+
+.funding-amount-input:focus {
+    outline: none;
+    border-color: #017cad;
+}
+
+.funding-amount-unit {
+    font-size: 16px;
+    font-weight: 600;
+}
+
+/* 날짜 영역 */
+.funding-date-row {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.funding-date-box {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+
+}
+
+.funding-date-box span {
+    text-align: center;
+}
+
+.funding-date-box input {
+    padding: 8px 10px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+}
+
+.funding-date-box span {
+    font-size: 13px;
+    /* color: #777; */
+    color: #252525;
+}
+
+.funding-date-tilde {
+    font-size: 18px;
+    margin-top: -28px;
+}
+
+/* textarea 디자인 변경 */
+
+.funding-textarea-block {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    margin-bottom: 40px;
+}
+
+.funding-textarea {
+    width: 60%;
+    padding: 12px 14px;
+    font-size: 15px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    resize: none;
+}
+
+.funding-textarea:focus {
+    outline: none;
+    border-color: #017cad;
+}
+
+/* 도움말 위치 미세 조정 */
+.funding-textarea-help {
+    margin-top: 10px;
+}
+
+.textarea-wrapper textarea {
+    width: 60%;
+    min-height: 40px;
+    padding: 8px 14px;
+    font-size: 15px;
+
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    resize: none;
+    background: #fff;
+}
+
+.textarea-wrapper textarea:focus {
+    outline: none;
+    border-color: #017cad;
+}
+
+.funding-register-container textarea {
+    resize: none;
+    overflow: hidden;
+}
+
+.funding-img-style {
+    width: 60%;
+    min-height: 40px;
+    padding: 8px 14px;
+    font-size: 15px;
+
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    resize: none;
+    background: #fff;
+}
+
+/* 필수입력 에러 css */
+
+.funding-my-idea.error {
+    color: red;
+    font-weight: bold;
+}
+
+.textarea-wrapper textarea.error {
+    border: 1px solid red;
+}
+
+.funding-amount-input.error,
+.funding-date-box input.error {
+    border: 1px solid red;
+}
+
+/* textarea 스크롤바 기능 */
+#summary {
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+#description {
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+textarea::-webkit-scrollbar {
+    width: 8px;
+}
+textarea::-webkit-scrollbar-thumb {
+    background-color: #646464;
+    border-radius: 4px;
+    cursor: pointer;
+}
