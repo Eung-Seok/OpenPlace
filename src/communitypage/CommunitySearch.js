@@ -6,15 +6,20 @@ import Pagination from 'react-bootstrap/Pagination';
 import { useLocation, useNavigate, useParams } from "react-router";
 import { useEffect, useState } from "react";
 import Patch from "./components/Patch";
+import ComboBox from "./components/Combobox";
 
 function CommunitySearch() {
+    let params = useParams();
+    let searchword = params.keyword
+    let page = params.page;
+    let [boxSelected, setBoxSelected] = useState('최신순')
+    let [List, setList] = useState(JSON.parse(localStorage.getItem('통합데이터')));
+    let [data, setData] = useState([]);
+    let currentPage = parseInt(page) || 1;
     const [keyword, setKeyword] = useState('');
     let nowpage = useLocation();
     let nowLogin = JSON.parse(localStorage.getItem('로그인현황'))
     let navigate = useNavigate();
-    let params = useParams();
-    let searchword = params.keyword
-    let page = params.page;
     let totalList = [];
     let nowpageArr = nowpage.pathname.split('/');
     let category = nowpageArr[2]
@@ -32,26 +37,17 @@ function CommunitySearch() {
             totalList = JSON.parse(localStorage.getItem('프로젝트 후기'))
             break;
     }
-    let List = totalList.filter((item) => {
-        return item.title.includes(searchword)
-    })
     let pages = [];
     for (let i = 1; i <= List.length / 10 + 1; i++) {
         pages.push('page ' + i);
-    }
-    let data = [];
-    for (let i = (page - 1) * 10; i <= page * 10 - 1; i++) {
-        if (List[i] != undefined) {
-            data.push(List[i]);
-        }
     }
     let active = page;
     let items = [];
     for (let number = 1; number <= pages.length; number++) {
         items.push(
             <Pagination.Item key={number} active={number == active} onClick={() => {
-                navigate('/'+nowpageArr[1]+'/'+nowpageArr[2]+'/'+nowpageArr[3]+'/'+searchword+'/' + number)
-                window.scrollTo(0,0)
+                navigate('/' + nowpageArr[1] + '/' + nowpageArr[2] + '/' + nowpageArr[3] + '/' + searchword + '/' + number)
+                window.scrollTo(0, 0)
             }}>
                 {number}
             </Pagination.Item>
@@ -59,9 +55,29 @@ function CommunitySearch() {
     }
     const handleSearch = () => {
         if (!keyword.trim()) return; // 빈 값 방지
-        navigate('/'+nowpageArr[1]+'/'+nowpageArr[2]+'/'+nowpageArr[3]+'/'+keyword+'/1');
-        window.scrollTo(0,0)
+        navigate('/' + nowpageArr[1] + '/' + nowpageArr[2] + '/' + nowpageArr[3] + '/' + keyword + '/1');
+        window.scrollTo(0, 0)
     };
+
+    useEffect(() => {
+        let sortedList = totalList.filter((item) => {
+            return item.title.includes(searchword)
+        })
+        if (boxSelected == '좋아요순') {
+            sortedList.sort((a, b) => (b.likes || 0) - (a.likes || 0))
+        }
+        setList(sortedList)
+    }, [boxSelected, searchword])
+
+
+    useEffect(() => {
+        const startIndex = (currentPage - 1) * 10;
+        const endIndex = startIndex + 10;
+        const slicedData = List.slice(startIndex, endIndex);
+        setData(slicedData)
+    }, [boxSelected, List, currentPage])
+
+
     return (
         <div className="body">
             <div class="tabs">
@@ -72,14 +88,15 @@ function CommunitySearch() {
             </div>
 
             <div>
+                <ComboBox selected={boxSelected} onSelect={setBoxSelected} />
                 <Button style={{ float: 'right', clear: 'both', marginBottom: '16px' }} variant="success" onClick={() => {
                     if (nowLogin) {
                         navigate('/community/write')
-                        window.scrollTo(0,0)
+                        window.scrollTo(0, 0)
                     } else {
                         localStorage.setItem('마지막 주소', JSON.stringify(nowpage.pathname))
                         navigate('/login')
-                        window.scrollTo(0,0)
+                        window.scrollTo(0, 0)
                     }
                 }}>글쓰기</Button>
             </div>
