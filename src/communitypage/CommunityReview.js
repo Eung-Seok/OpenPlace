@@ -6,6 +6,7 @@ import Pagination from 'react-bootstrap/Pagination';
 import { useLocation, useNavigate, useParams } from "react-router";
 import { useEffect, useState } from "react";
 import ComboBox from "./components/Combobox";
+import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 
 function CommunityReview() {
     let { page } = useParams();
@@ -98,8 +99,33 @@ function CommunityReview() {
                     Search
                 </button>
             </div>
-            <div style={{ justifyItems: 'center' }}>
+            <div style={{ justifyItems: 'center', display:'flex', justifyContent:'center'}}>
+                <button
+                    className="funding-more-btn"
+                    onClick={() => {
+                        if (page > 1) {
+                            navigate('/community/review/' + (Number(page) - 1))
+                            window.scrollTo(0, 0)
+                        } else {
+                            alert('첫 페이지입니다.')
+                        }
+                    }}
+                >
+                    <FaChevronLeft />
+                </button>
                 <Pagination>{items}</Pagination>
+                <button
+                    className="funding-more-btn"
+                    onClick={() => {
+                        if (page < pages.length) {
+                            navigate('/community/review/' + (Number(page) + 1))
+                            window.scrollTo(0, 0)
+                        } else {
+                            alert('마지막 페이지입니다.')
+                        }
+                    }}>
+                    <FaChevronRight />
+                </button>
             </div>
         </div >
     );

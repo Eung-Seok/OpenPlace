@@ -7,6 +7,7 @@ import { useLocation, useNavigate, useParams } from "react-router";
 import { useEffect, useState } from "react";
 import Patch from "./components/Patch";
 import ComboBox from "./components/Combobox";
+import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 
 function CommunityMain() {
     let { page } = useParams();
@@ -28,7 +29,7 @@ function CommunityMain() {
         items.push(
             <Pagination.Item key={number} active={number == active} onClick={() => {
                 navigate('/community/main/' + number)
-                window.scrollTo(0,0)
+                window.scrollTo(0, 0)
             }}>
                 {number}
             </Pagination.Item>
@@ -37,21 +38,21 @@ function CommunityMain() {
     const handleSearch = () => {
         if (!keyword.trim()) return; // 빈 값 방지
         navigate('/community/main/search/' + keyword + '/1');
-        window.scrollTo(0,0)
+        window.scrollTo(0, 0)
     };
 
     useEffect(() => {
         let sortedList = JSON.parse(localStorage.getItem('통합데이터'))
-        if (boxSelected == '좋아요순'){
-            sortedList.sort((a,b)=> (b.likes || 0) - (a.likes || 0))
+        if (boxSelected == '좋아요순') {
+            sortedList.sort((a, b) => (b.likes || 0) - (a.likes || 0))
         }
         setList(sortedList)
     }, [boxSelected])
 
 
     useEffect(() => {
-        const startIndex = (currentPage - 1)*10;
-        const endIndex = startIndex+10;
+        const startIndex = (currentPage - 1) * 10;
+        const endIndex = startIndex + 10;
         const slicedData = List.slice(startIndex, endIndex);
         setData(slicedData)
     }, [boxSelected, List, currentPage])
@@ -70,11 +71,11 @@ function CommunityMain() {
                 <Button style={{ float: 'right', clear: 'both', marginBottom: '16px' }} variant="success" onClick={() => {
                     if (nowLogin) {
                         navigate('/community/write')
-                        window.scrollTo(0,0)
+                        window.scrollTo(0, 0)
                     } else {
                         localStorage.setItem('마지막 주소', JSON.stringify(nowpage.pathname))
                         navigate('/login')
-                        window.scrollTo(0,0)
+                        window.scrollTo(0, 0)
                     }
                 }}>글쓰기</Button>
             </div>
@@ -99,8 +100,33 @@ function CommunityMain() {
                     Search
                 </button>
             </div>
-            <div style={{ justifyItems: 'center' }}>
+            <div style={{ justifyItems: 'center', display:'flex', justifyContent:'center'}}>
+                <button
+                    className="funding-more-btn"
+                    onClick={() => {
+                        if (page > 1) {
+                            navigate('/community/main/' + (Number(page) - 1))
+                            window.scrollTo(0, 0)
+                        } else {
+                            alert('첫 페이지입니다.')
+                        }
+                    }}
+                >
+                    <FaChevronLeft />
+                </button>
                 <Pagination>{items}</Pagination>
+                <button
+                    className="funding-more-btn"
+                    onClick={() => {
+                        if (page < pages.length) {
+                            navigate('/community/main/' + (Number(page) + 1))
+                            window.scrollTo(0, 0)
+                        } else {
+                            alert('마지막 페이지입니다.')
+                        }
+                    }}>
+                    <FaChevronRight />
+                </button>
             </div>
         </div >
     );

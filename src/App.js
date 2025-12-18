@@ -34,6 +34,7 @@ import FundingCreate from "./fundingpage/FundingRegister";
 import FundingDetail from "./fundingpage/FundingDetail";
 import FundingSupport from "./fundingpage/FundingSupport";
 import CommunitySearch from "./communitypage/CommunitySearch";
+import FundingSearchList from "./fundingpage/FundingSearchList";
 
 function App() {
 
@@ -65,6 +66,8 @@ function App() {
           <Route path="/register" element={<Register />} />
           <Route path="/funding/:funding/:page" element={<FundingList />} />
           <Route path="/funding/:funding/:category/:page" element={<FundingList />} />
+          <Route path="/funding/:funding/search/:searchword/:page" element={<FundingSearchList />} />
+          <Route path="/funding/:funding/:category/search/:searchword/:page" element={<FundingSearchList />} />
           <Route path="/funding/create" element={<FundingCreate />} />
           <Route path="/funding/detail/:id" element={<FundingDetail />} />
           <Route path="/funding/support/:id" element={<FundingSupport />} />

@@ -386,16 +386,13 @@
 .funding-filter-container {
     max-width: 1400px;
     margin: 0 auto;
-    /* border: 1px solid #a7a7a7; */
     border-top: none;
     border-bottom: none;
-    /* background: #ffffff; */
 }
 
 .funding-funding-container {
     max-width: 1400px;
     margin: 0 auto;
-    /* border: 1px solid #a7a7a7; */
     border-top: none;
     background: #ffffff;
 }
@@ -862,4 +859,30 @@
 
 .funding-tabs-hidden{
     display:none;
+}
+
+.funding-more-btn {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 1px solid #ddd;
+    background-color: #fff;
+    position: static;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    cursor: pointer;
+    color: #333;
+    transition: all 0.2s ease;
+}
+
+.funding-more-btn:hover {
+    border-color: #09947d;
+    color: #09947d;
+}
+
+.funding-pagination{
+    display: flex;
 }
