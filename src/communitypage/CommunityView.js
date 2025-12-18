@@ -119,7 +119,7 @@ function CommunityView() {
                         if (event.target.content.value.trim() != '') {
                             let today = new Date()
                             let now = today.getFullYear() + '.' + (today.getMonth() + 1) + '.' + today.getDay() + '. ' + today.getHours() + ':' + today.getMinutes();
-                            totalData[Number(id) - 1].comment.unshift([loginInfo.name, now, comment])
+                            totalData[Number(id) - 1].comment.push([loginInfo.name, now, comment])
                             setComment('')
                             localStorage.setItem('통합데이터', JSON.stringify(totalData))
                         }
