@@ -1,12 +1,15 @@
-.funding-bg-color {
-    background-color: #ffffff;
-}
-
 .funding-bg-color,
 .funding-bg-color * {
-    margin: 0;
+    margin: 0
     /* font-family: 'Pretendard', sans-serif; */
 }
+
+
+.funding-bg-color {
+    background-color: #ffffff;
+    margin: 0 auto;
+}
+
 
 /* .funding-menu {
 
@@ -135,10 +138,12 @@
 } */
 
 .funding-explan {
-    transform: translateY(3px);
-    margin: 0 auto;
-    font-size: 45px;
-    margin-left: 0;
+    font-size: 32px;
+    font-weight: 600;
+    color: #252525;
+    margin: 0;
+    line-height: 1.2;
+    padding-bottom: 2px;
 }
 
 /* .funding-choose {
@@ -179,22 +184,24 @@
 /* 공통 메뉴 부분 */
 * {
     font-family: "Poppins", sans-serif;
+
 }
 
 .funding-tabs {
     display: flex;
     gap: 10px;
-    margin: 40px 0;
+    margin-bottom: 30px;
 }
 
 .funding-tab {
-    width: 150px;
-    height: 60px;
-    padding: 10px 18px;
+    height: 56px;
+    padding: 0 22px;
     border: 1px solid #09947d;
-    background: #fff;
+    background: #ffffff;
     color: #09947d;
     border-radius: 20px;
+    font-size: 18px;
+    font-weight: 400;
     cursor: pointer;
 }
 
@@ -208,7 +215,11 @@
 }
 
 .funding-btn-success {
-    transform: translateY(18px);
+    background-color: #09947d !important;
+    border-color: #09947d !important;
+    font-size: 18px !important;
+    padding: 10px 22px;
+    border-radius: 10px;
 }
 
 .funding-detail-container,
@@ -273,17 +284,17 @@
 }
 
 .funding-title {
-    font-weight: 500;
-    font-size: 22px;
+    font-size: 20px;
+    font-weight: 600;
+    color: #252525;
 }
 
 .funding-sub-title {
-    font-size: 17px;
-    height: 88px;
+    font-size: 15px;
+    color: #666;
+    line-height: 1.6;
+    height: 72px;
     overflow: hidden;
-    position: relative;
-    font-weight: 400;
-    margin-bottom: 10px;
 }
 
 .funding-sub-title::after {
@@ -368,9 +379,9 @@
 }
 
 .funding-filter-container {
-    width: 100%;
-    max-width: 1300px;
+    max-width: 1400px;
     margin: 0 auto;
+    padding: 40px 50px 0;
     /* border: 1px solid #a7a7a7; */
     border-top: none;
     border-bottom: none;
@@ -378,10 +389,9 @@
 }
 
 .funding-funding-container {
-    width: 100%;
     max-width: 1400px;
     margin: 0 auto;
-    padding: 50px;
+    padding: 20px 50px 60px;
     /* border: 1px solid #a7a7a7; */
     border-top: none;
     background: #ffffff;
@@ -394,7 +404,7 @@
     margin: 0 auto;
     /* display: flex; */
     justify-content: space-between;
-    align-items: flex-end;
+    align-items: center;
     display: flex;
 }
 
@@ -437,46 +447,68 @@
 
 
 .funding-more-btn {
-    background: #4e84ce;
+    background: #09947d;
     color: #fff;
     padding: 10px 16px;
     text-decoration: none;
     border-radius: 6px;
+    font-weight: 400;
 }
 
 .funding-comment {
-    margin-top: 100px;
+    margin-top: 60px;
+    font-size: 28px;
+    font-weight: 400;
     text-align: center;
-    font-size: 35px;
-    color: #252525;
 }
 
 .funding-create-btn {
     display: inline-block;
-    width: 200px;
-    height: 77px;
-    line-height: 77px;
+    margin-top: 20px;
+    width: 210px;
+    height: 60px;
+    line-height: 60px;
     text-align: center;
     background: #09947d;
-    color: #fff;
+    color: #ffffff;
+    font-size: 20px;
+    font-weight: 600;
+    border-radius: 10px;
     text-decoration: none;
-    font-size: 25px;
-    border-radius: 6px;
 }
 
 .funding-funding-grid {
-    margin-top: 50px;
+    overflow: auto;
+    margin-top: 30px;
     display: flex;
     flex-wrap: wrap;
     gap: 20px;
 }
 
 .funding-funding-card {
+    position: relative;
+
     flex: 0 0 calc((100% - 40px) / 3);
     max-width: calc((100% - 40px) / 3);
+    
+    display: flex;
+    /* ⭐ 핵심 */
+    flex-direction: column;
+    /* ⭐ 핵심 */
+
+    background: #f6fbfa;
+    border-radius: 14px;
+    overflow: hidden;
     cursor: pointer;
-    transition: 0.2s;
-    margin-bottom: 35px;
+
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+    transition: all 0.25s ease;
+
+    margin-bottom: 0;
+}
+
+.funding-funding-card>*:last-child {
+    margin-bottom: 0;
 }
 
 @media (max-width: 1024px) {
@@ -488,12 +520,12 @@
 
 .funding-funding-card:hover {
     transform: translateY(-4px);
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 10px 22px rgba(0, 0, 0, 0.15);
 }
 
 .funding-funding-card img {
     width: 100%;
-    height: 250px;
+    height: 230px;
     object-fit: cover;
 }
 
@@ -519,12 +551,15 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    font-size: 14px;
+    font-weight: 500;
 }
 
 .funding-gauge {
-    background-color: #e7e7e7;
-    height: auto;
-    padding: 15px 15px 20px;
+    margin-top: auto;
+    padding: 16px 18px;
+    background: #ffffff;
+    border-top: 1px solid #eee;
 }
 
 .funding-gauge * {
@@ -553,7 +588,7 @@
 .funding-bar span {
     display: block;
     height: 100%;
-    background: #4e84ce;
+    background: #09947d;
     width: 0;
     border-radius: 5px;
     position: absolute;

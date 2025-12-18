@@ -36,7 +36,7 @@ function FundingList() {
     ];
     const [activeTab, setActiveTab] = useState(tabs[0]);
     return (
-        <div className="funding-bg-color">
+        <div className="funding-bg-color body">
             <section className="funding-filter-container">
 
                 <div className="funding-tabs">
