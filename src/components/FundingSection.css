@@ -94,7 +94,11 @@
     justify-content: space-between;
     font-size: 12px;
     color: #777;
-    line-height: 1.2;
+    line-height: 1;
+}
+.funding-card-bottom{
+    margin-top: -20px;
+    padding: 0;
 }
 
 .funding-card-category {
@@ -104,9 +108,9 @@
 
 /* 제목 (2줄 고정) */
 .funding-card-title {
-
+    
+    margin: 0 0 8px;
     margin-bottom: 8px;
-
     font-size: 15px;
     font-weight: 700;
     line-height: 1.25;
