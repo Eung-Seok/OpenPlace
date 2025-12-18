@@ -54,12 +54,17 @@ function MyPage() {
             balance: (user.balance || 0) + amount,
         };
 
-        let list = JSON.parse(localStorage.getItem("계정목록"));
-        let index = list.findIndex(item => item.id === user.id);
-
-        list[index] = updatedUser;
-        localStorage.setItem("계정목록", JSON.stringify(list));
-        setUser(updatedUser);
+        let list = JSON.parse(localStorage.getItem('계정목록'))
+        let indexes = 0
+        list.map((item,index)=>{
+            if(item.id == user.id){
+                indexes = index
+            }
+        })
+        list[indexes] = updatedUser
+        localStorage.setItem("계정목록", JSON.stringify([...list]));
+        localStorage.setItem('계정정보', JSON.stringify(updatedUser))
+        setUser(updatedUser)
         setChargeOpen(false);
         setChargeAmount("");
     };
