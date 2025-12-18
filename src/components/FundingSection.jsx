@@ -64,6 +64,8 @@ function FundingSection() {
                                 <span className="funding-card-region">{item.map}</span>
                             </div>
                             {/* 제목 */}
+                            <div className="funding-card-bottom">
+
                             <h3 className="funding-card-title">{item.title}</h3>
 
                             {/* 정보 리스트 */}
@@ -85,6 +87,7 @@ function FundingSection() {
                                     </div>
                                 </div>
                             </ul>
+                            </div>
                         </div>
                     </div>
                 ))}
