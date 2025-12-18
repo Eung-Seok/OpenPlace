@@ -7,10 +7,12 @@ import { useLocation, useNavigate, useParams } from "react-router";
 import { useEffect, useState } from "react";
 import Patch from "./components/Patch";
 import ComboBox from "./components/Combobox";
-import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
+import { FaChevronRight,FaChevronLeft } from "react-icons/fa";
 
-function CommunityMain() {
-    let { page } = useParams();
+function CommunitySearch() {
+    let params = useParams();
+    let searchword = params.keyword
+    let page = params.page;
     let [boxSelected, setBoxSelected] = useState('최신순')
     let [List, setList] = useState(JSON.parse(localStorage.getItem('통합데이터')));
     let [data, setData] = useState([]);
@@ -19,6 +21,23 @@ function CommunityMain() {
     let nowpage = useLocation();
     let nowLogin = JSON.parse(localStorage.getItem('로그인현황'))
     let navigate = useNavigate();
+    let totalList = [];
+    let nowpageArr = nowpage.pathname.split('/');
+    let category = nowpageArr[2]
+    switch (category) {
+        case 'main':
+            totalList = JSON.parse(localStorage.getItem('통합데이터'))
+            break;
+        case 'general':
+            totalList = JSON.parse(localStorage.getItem('자유게시판'))
+            break;
+        case 'report':
+            totalList = JSON.parse(localStorage.getItem('지역 제보'))
+            break;
+        case 'review':
+            totalList = JSON.parse(localStorage.getItem('프로젝트 후기'))
+            break;
+    }
     let pages = [];
     for (let i = 1; i <= List.length / 10 + 1; i++) {
         pages.push('page ' + i);
@@ -28,7 +47,7 @@ function CommunityMain() {
     for (let number = 1; number <= pages.length; number++) {
         items.push(
             <Pagination.Item key={number} active={number == active} onClick={() => {
-                navigate('/community/main/' + number)
+                navigate('/' + nowpageArr[1] + '/' + nowpageArr[2] + '/' + nowpageArr[3] + '/' + searchword + '/' + number)
                 window.scrollTo(0, 0)
             }}>
                 {number}
@@ -37,17 +56,19 @@ function CommunityMain() {
     }
     const handleSearch = () => {
         if (!keyword.trim()) return; // 빈 값 방지
-        navigate('/community/main/search/' + keyword + '/1');
+        navigate('/' + nowpageArr[1] + '/' + nowpageArr[2] + '/' + nowpageArr[3] + '/' + keyword + '/1');
         window.scrollTo(0, 0)
     };
 
     useEffect(() => {
-        let sortedList = JSON.parse(localStorage.getItem('통합데이터'))
+        let sortedList = totalList.filter((item) => {
+            return item.title.includes(searchword)
+        })
         if (boxSelected == '좋아요순') {
             sortedList.sort((a, b) => (b.likes || 0) - (a.likes || 0))
         }
         setList(sortedList)
-    }, [boxSelected])
+    }, [boxSelected, searchword])
 
 
     useEffect(() => {
@@ -57,13 +78,14 @@ function CommunityMain() {
         setData(slicedData)
     }, [boxSelected, List, currentPage])
 
+
     return (
         <div className="body">
             <div class="tabs">
-                <button class="tab active" onClick={() => navigate('/community/main/1')}>전체 글</button>
-                <button class="tab" onClick={() => navigate('/community/general/1')}>자유게시판</button>
-                <button class="tab" onClick={() => navigate('/community/report/1')}>지역 제보</button>
-                <button class="tab" onClick={() => navigate('/community/review/1')}>프로젝트 후기</button>
+                <button class={"tab " + (category == 'main' ? 'active' : ' ')} onClick={() => navigate('/community/main/1')}>전체 글</button>
+                <button class={"tab " + (category == 'general' ? 'active' : ' ')} onClick={() => navigate('/community/general/1')}>자유게시판</button>
+                <button class={"tab " + (category == 'report' ? 'active' : ' ')} onClick={() => navigate('/community/report/1')}>지역 제보</button>
+                <button class={"tab " + (category == 'review' ? 'active' : ' ')} onClick={() => navigate('/community/review/1')}>프로젝트 후기</button>
             </div>
 
             <div>
@@ -105,13 +127,12 @@ function CommunityMain() {
                     className="funding-more-btn"
                     onClick={() => {
                         if (page > 1) {
-                            navigate('/community/main/' + (Number(page) - 1))
+                            navigate('/' + nowpageArr[1] + '/' + nowpageArr[2] + '/' + nowpageArr[3] + '/' + searchword + '/' + (Number(page) - 1))
                             window.scrollTo(0, 0)
                         } else {
                             alert('첫 페이지입니다.')
                         }
-                    }}
-                >
+                    }}>
                     <FaChevronLeft />
                 </button>
                 <Pagination>{items}</Pagination>
@@ -119,7 +140,7 @@ function CommunityMain() {
                     className="funding-more-btn"
                     onClick={() => {
                         if (page < pages.length) {
-                            navigate('/community/main/' + (Number(page) + 1))
+                            navigate('/' + nowpageArr[1] + '/' + nowpageArr[2] + '/' + nowpageArr[3] + '/' + searchword + '/' + (Number(page) + 1))
                             window.scrollTo(0, 0)
                         } else {
                             alert('마지막 페이지입니다.')
@@ -132,4 +153,4 @@ function CommunityMain() {
     );
 }
 
-export default CommunityMain;
+export default CommunitySearch;

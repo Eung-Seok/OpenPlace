@@ -30,7 +30,10 @@ function FundingSection() {
 
                     <button
                         className="funding-section-more-btn"
-                        onClick={() => navigate("/funding/main/1")}
+                        onClick={() => {
+                            navigate("/funding/main/1");
+                            window.scrollTo(0, 0);
+                        }}
                         aria-label="펀딩 더보기"
                     >
                         <FaChevronRight />
@@ -43,7 +46,10 @@ function FundingSection() {
                     <div
                         key={item.id}
                         className="funding-section-card"
-                        onClick={() => navigate(`/funding/detail/${item.id}`)}
+                        onClick={() => {
+                            navigate(`/funding/detail/${item.id}`);
+                            window.scrollTo(0, 0);
+                        }}
                     >
                         {/* 이미지 */}
                         <div className="funding-card-image">
@@ -58,6 +64,8 @@ function FundingSection() {
                                 <span className="funding-card-region">{item.map}</span>
                             </div>
                             {/* 제목 */}
+                            <div className="funding-card-bottom">
+
                             <h3 className="funding-card-title">{item.title}</h3>
 
                             {/* 정보 리스트 */}
@@ -79,6 +87,7 @@ function FundingSection() {
                                     </div>
                                 </div>
                             </ul>
+                            </div>
                         </div>
                     </div>
                 ))}

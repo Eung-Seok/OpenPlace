@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import FundingDataInit from "../data/FundingDataInit.js";
 import "./Funding.css";
-import { FaChevronLeft, FaMapMarkerAlt } from "react-icons/fa";
+import { FaMapMarkerAlt } from "react-icons/fa";
 import { IoMenu } from "react-icons/io5";
 import FundingBox from "./component/FundingBox.js"
 import { Link } from "react-router-dom";
@@ -10,7 +10,7 @@ import Button from 'react-bootstrap/Button';
 import ComboBox from "../communitypage/components/Combobox.js";
 import ComboBox1 from "../communitypage/components/Combobox1.js";
 import Pagination from 'react-bootstrap/Pagination';
-import { FaChevronRight } from "react-icons/fa";
+import { FaChevronRight,FaChevronLeft } from "react-icons/fa";
 
 
 function FundingList() {
@@ -18,28 +18,26 @@ function FundingList() {
     let funding = params.funding;
     let category = params.category;
     let page = params.page
+    let searchword = params.searchword
     let [fundingData, setFundingData] = useState(JSON.parse(localStorage.getItem('펀딩데이터')))
     let [usingData, setUsingData] = useState([])
     let currentPage = parseInt(page) || 1;
     const [keyword, setKeyword] = useState('');
     let [boxSelected, setBoxSelected] = useState('최신순')
     let navigate = useNavigate();
-<<<<<<< HEAD
-    let { page } = useParams();
-    let fundingData = JSON.parse(localStorage.getItem('펀딩데이터'))
-=======
     let nowpage = useLocation();
     let pageArr = (nowpage.pathname.split("/"))
     pageArr.shift()
     pageArr.pop()
+    pageArr.pop()
+    pageArr.pop()
     pageArr = pageArr.join('/')
     let items = [];
->>>>>>> develop
     let pages = [];
     for (let number = 1; number <= fundingData.length / 10 + 1; number++) {
         items.push(
             <Pagination.Item key={number} active={number == page} onClick={() => {
-                navigate('/' + pageArr + '/' + number)
+                navigate('/'+pageArr+'/search/'+searchword+'/'+number)
                 window.scrollTo(0, 0)
             }}>
                 {number}
@@ -47,17 +45,10 @@ function FundingList() {
         );
     }
 
-<<<<<<< HEAD
-    let usingData = [];
-    for (let i = (page - 1) * 9; i < page * 9; i++) {
-        if (fundingData[i] != undefined)
-            usingData.push(fundingData[i]);
-    }
-=======
     const handleSearch = () => {
         if (!keyword.trim()) return; // 빈 값 방지
-        navigate('/' + pageArr + '/search/' + keyword + '/1');
-        window.scrollTo(0, 0)
+        navigate('/'+pageArr+'/search/' + keyword + '/1');
+        window.scrollTo(0,0)
     };
 
     useEffect(() => {
@@ -91,11 +82,14 @@ function FundingList() {
                     return item.finish == true
             }
         })
+        sortedList = sortedList.filter((item)=>{
+            return (item.title.includes(searchword)||item.map.includes(searchword))
+        })
         if (boxSelected == '진행도순') {
             sortedList.sort((a, b) => (b.rate || 0) - (a.rate || 0))
         }
         setFundingData(sortedList)
-    }, [boxSelected, funding, category])
+    }, [boxSelected, funding, category, searchword])
 
 
     useEffect(() => {
@@ -106,117 +100,8 @@ function FundingList() {
     }, [boxSelected, fundingData, currentPage])
 
 
->>>>>>> develop
 
     return (
-<<<<<<< HEAD
-        <div>
-            <div className="funding-bg-color funding-total-container">
-                <section className="funding-filter-container">
-
-                    <div className="funding-tabs">
-                        {tabs.map((tab) => (
-                            <button
-                                key={tab}
-                                className={`funding-tab ${activeTab === tab ? "active" : ""}`}
-                                onClick={() => setActiveTab(tab)}
-                            >
-                                {tab}
-                            </button>
-                        ))}
-                    </div>
-
-                    {/* 펀딩 공통 메뉴바 */}
-
-                    <div className="funding-filter">
-                        <span className="funding-explan">공공시설 개선 현황</span>
-                        <div>
-                            {/* <Button style={{ float: 'right', clear: 'both', marginBottom: '16px' }} variant="success" onClick={() => navigate('/funding/write')}>등록하기</Button> */}
-                            <Link to="/funding/create">
-                                <Button type="button" className="funding-btn-success btn-success" style={{ float: 'right', clear: 'both', marginBottom: '16px', fontSize: '25px' }}>등록하기</Button>
-                            </Link>
-                        </div>
-                    </div>
-                </section>
-
-                <section className="funding-funding-container">
-                    <hr />
-                    <div className="funding-funding-grid">
-                        {
-                            usingData.map((item) => {
-                                return <FundingBox item={item} />
-                            })
-                        }
-                    </div>
-                    <hr className="card-bottom-bar" />
-
-                    <div className="funding-page-box">
-                        {pages.map((item, index) => {
-                            const pageNum = index + 1;
-                            return (
-                                <a
-                                    className={`funding-page ${pageNum == page ? 'active' : ''}`}
-                                    onClick={(e) => {
-                                        navigate('/funding/main/' + pageNum)
-                                    }}
-                                >
-                                    {pageNum}
-                                </a>
-                            );
-                        })}
-                    </div>
-
-                    <div className="funding-plus">
-                        <div className="funding-more-actions">
-                            <a
-                                href="#"
-                                className="funding-more-btn"
-                                onClick={(e) => {
-                                    e.preventDefault();
-                                    if (1 < page) {
-                                        navigate('/funding/main/' + (Number(page) - 1))
-                                    } else {
-                                        alert('처음 페이지입니다')
-                                    };
-                                }}
-                            >
-                                이전 페이지
-                            </a>
-
-                        </div>
-                        <div className="funding-more-actions">
-                            <a
-                                href="#"
-                                className="funding-more-btn"
-                                onClick={(e) => {
-                                    e.preventDefault();
-                                    if (page < pages.length) {
-                                        navigate('/funding/main/' + (Number(page) + 1))
-                                    } else {
-                                        alert('마지막 페이지입니다')
-                                    };
-                                }}
-                            >
-                                다음 페이지
-                            </a>
-
-                        </div>
-                        <p className="funding-comment">여러분 동네, 개선이 필요한 공공시설이 있나요?</p>
-                        <div className="funding-register-actions">
-
-                            <Button className="funding-create-btn"
-                                onClick={() => {
-                                        navigate("/funding/create");
-                                    window.scrollTo(0, 0);
-                                }}
-                            >펀딩 등록하기</Button>
-
-                        </div>
-                    </div>
-                </section>
-            </div >
-        </div>
-=======
         <div className="funding-bg-color body">
             <section className="funding-filter-container">
                 <div className="funding-tabs">
@@ -248,6 +133,7 @@ function FundingList() {
             </section >
 
             <section className="funding-funding-container">
+                <hr />
                 <div className="funding-funding-grid">
                     {
                         usingData.map((item) => {
@@ -255,6 +141,7 @@ function FundingList() {
                         })
                     }
                 </div>
+                <hr className="card-bottom-bar" />
                 <div className="community-search" style={{ justifyItems: 'center' }}>
                     <input
                         type="text"
@@ -276,13 +163,12 @@ function FundingList() {
                         className="funding-more-btn"
                         onClick={() => {
                             if(page > 1){
-                                navigate('/'+pageArr+'/'+(Number(page)-1))
+                                navigate('/'+pageArr+'/search/'+searchword+'/'+(Number(page)-1))
                                 window.scrollTo(0, 0)
                             }else{
                                 alert('첫 페이지입니다.')
                             }
-                        }}
-                    >
+                        }}>
                         <FaChevronLeft />
                     </button>
                     <Pagination className="funding-pagination">{items}</Pagination>
@@ -290,7 +176,7 @@ function FundingList() {
                         className="funding-more-btn"
                         onClick={() => {
                             if(page < fundingData.length / 10 ){
-                                navigate('/'+pageArr+'/'+(Number(page)+1))
+                                navigate('/'+pageArr+'/search/'+searchword+'/'+(Number(page)+1))
                                 window.scrollTo(0, 0)
                             }else{
                                 alert('마지막 페이지입니다.')
@@ -312,7 +198,6 @@ function FundingList() {
                 </div>
             </section>
         </div >
->>>>>>> develop
     );
 }
 
