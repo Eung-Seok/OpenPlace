@@ -6,6 +6,7 @@ function FundingBox({ item }) {
 
     const handleClick = () => {
         navigate("/funding/detail/" + item.id);
+        window.scrollTo(0, 0);
     };
 
     return (
