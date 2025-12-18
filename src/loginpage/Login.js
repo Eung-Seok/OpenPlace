@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import './Login.css'
 import { useNavigate } from 'react-router';
 
@@ -30,6 +30,12 @@ function Login() {
 
     return (
         <div>
+            <div className='login-page-wrapper'>
+                <img className='login-image' src='/images/common/OpenPlace.png' width="100%" onClick={()=>{
+                    navigate('/')
+                    window.scrollTo(0, 0)
+                }}/>
+            </div>
             <div className='login-form-container' id='container'>
                 <form onSubmit={(event) => {
                     event.preventDefault();

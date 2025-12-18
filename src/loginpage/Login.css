@@ -232,7 +232,7 @@
     border-radius: 8px;
     box-sizing: border-box;
     border: none;
-    background-color: lightgreen;
+    background-color: #066b59;
 }
 
 .login-submit-button.off {
@@ -290,4 +290,37 @@
     line-height: 17px;
     text-decoration: none;
     color: #888;
+}
+
+.login-image{
+    align-self: center;
+    width: 300px; /* 혹은 70% 정도로 설정 */
+    display: block;
+    cursor: pointer;
+}
+.login-page-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* 자식 요소들을 가로 중앙 정렬 */
+    padding-top: 50px;
+    display: flex;
+    justify-content: center; /* 이미지 중앙 정렬 */
+    width: 100%;
+    margin-bottom: -140px;
+}
+.register-image{
+    align-self: center;
+    width: 300px; /* 혹은 70% 정도로 설정 */
+    display: block;
+    cursor: pointer;
+}
+.register-page-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* 자식 요소들을 가로 중앙 정렬 */
+    padding-top: 50px;
+    display: flex;
+    justify-content: center; /* 이미지 중앙 정렬 */
+    width: 100%;
+    margin-bottom: -110px;
 }

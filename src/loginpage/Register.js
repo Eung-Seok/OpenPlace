@@ -4,6 +4,7 @@ import './Register.css'
 
 function Register() {
     let accountList = JSON.parse(localStorage.getItem('계정목록'))
+    let id = document.getElementById('id')
     let navigate = useNavigate();
     let [nowFocus, setNowFocus] = useState('');
     let [error, setError] = useState({
@@ -42,6 +43,10 @@ function Register() {
     let [pwHide, setPwHide] = useState(true)
 
 
+    useEffect(()=>{
+        if(id != null)
+            id.focus()
+    }, [])
     useEffect(() => {
         if (form.id.trim() == '') {
             return;
@@ -93,6 +98,12 @@ function Register() {
 
     return (
         <div>
+            <div className='register-page-wrapper'>
+            <img className='register-image'src='/images/common/OpenPlace.png' width="100%"  onClick={()=>{
+                navigate('/')
+                window.scrollTo(0, 0)
+            }}/>
+            </div>
             <div className='register-form-container' id='container'>
                 <form onSubmit={(event) => {
                     event.preventDefault();

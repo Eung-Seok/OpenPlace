@@ -1,3 +1,6 @@
+*{
+    caret-color: transparent;
+}
 .register-form-container {
     width: 40%;
     position: relative;
@@ -340,7 +343,7 @@
     border-radius: 8px;
     box-sizing: border-box;
     border: none;
-    background-color: green;
+    background-color: #066b59;
 }
 .register-button-text {
     font-weight: 700;
@@ -370,4 +373,21 @@
     border-radius: 50%;
     background: #ff3f3f;
     content: "";
+}
+.register-image{
+    align-self: center;
+    width: 300px; /* 혹은 70% 정도로 설정 */
+    display: block;
+    cursor: pointer;
+}
+.register-page-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* 자식 요소들을 가로 중앙 정렬 */
+    padding-top: 50px;
+    display: flex;
+    justify-content: center; /* 이미지 중앙 정렬 */
+    width: 100%;
+    margin-bottom: -110px;
+    caret-color: transparent;
 }
