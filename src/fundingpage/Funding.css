@@ -638,7 +638,8 @@
     width: 100%;
     max-width: 1400px;
     margin: 0 auto;
-    padding: 50px;
+    /* padding: 50px; */
+    /* padding-right: 50px; */
     /* border: 1px solid #a7a7a7; */
     border-top: none;
     background: #ffffff;
@@ -675,29 +676,29 @@
 }
 
 .funding-support-explain h2 {
+    width: 80%;
+    margin: 0 auto;
     font-size: 44px;
-    margin-top: -20px;
-    margin-bottom: 10px;
+    margin-top: 20px;
+    margin-bottom: 15px;
 }
 
 .funding-support-explain .funding-icon {
-    margin-bottom: 30px;
+    margin-bottom: 40px;
 }
 
 /* 펀딩 서포트 이미지 가로길이 설정 위치 */
 .funding-support-header {
-    width: 1100px;
-    margin-bottom: 20px;
+    width: 100%;
+    margin: 0 auto;
     display: flex;
     align-items: center;
-    gap: -10px;
-    justify-content: center;
 }
 
 /* 펀딩 서포트 텍스트 가로길이 설정 위치 */
 .funding-explan-text {
     /* font-size: 25px; */
-    width: 100px;
+    width: 500px;
     /* width: max-content; */
     /* height: 550px; */
     display: block;
@@ -852,7 +853,8 @@
     display: flex;
     align-items: center;
     width: 100%;
-    /* justify-content: center; */
+    margin: 0 auto;
+    gap: 77px;
 }
 
 .funding-support-subtitle {

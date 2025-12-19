@@ -148,7 +148,7 @@ function FundingRegister() {
                 </div>
 
                 <p className={`funding-my-idea ${errors.summary ? "error" : ""}`}>
-                    귀하의 아이디어에 대한 간략한 요약 {!summary && <span>*</span>}
+                    선정된 아이디어에 대한 간략한 요약 {!summary && <span>*</span>}
                 </p>
                 <div className="textarea-wrapper textarea-wrapper-width">
                     <textarea
@@ -164,7 +164,7 @@ function FundingRegister() {
 
                     <span className="funding-tooltip">?
                         <div className="funding-tooltip-text">
-                            <p>프로젝트의 핵심 아이디어를 간략히 요약해주세요.</p>
+                            <p>선정된 아이디어의 핵심 내용을 간략히 작성해주세요.</p>
                             <br></br>
                             이 요약은 후원자가 프로젝트를 처음 이해하는 부분입니다.
                             무엇을 하려는 프로젝트인지 왜 필요한지 한눈에 알 수 있도록 작성해 주세요.

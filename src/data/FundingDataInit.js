@@ -14,7 +14,8 @@ function FundingDataInit() {
             author: "김응석",
             bankers: 20,
             hearts: 99,
-            finish : false
+            finish: false,
+            idea: "천안 불당동 숲놀이터는 아이들이 자연 속에서 자유롭게 뛰어놀 수 있는 소중한 공간이지만, 놀이시설과 바닥재가 오래되어 안전사고가 우려됩니다. 미끄럼틀과 놀이기구의 노후 부품을 교체하고 바닥 안전재를 보강해 보호자들이 안심하고 아이를 맡길 수 있는 놀이터로 개선되었으면 합니다."
         },
         {
             id: 2,
@@ -29,7 +30,8 @@ function FundingDataInit() {
             author: "안송이",
             bankers: 67,
             hearts: 82,
-            finish : false
+            finish: false,
+            idea: "천안 지역 공공시설에 설치된 CCTV는 일부 구간에서 화질이 낮고 사각지대가 존재해 범죄 예방에 한계가 있습니다. 공원, 주차장, 주거 밀집 지역을 중심으로 고화질 CCTV를 추가 설치하고 관리 체계를 강화해 시민들이 더욱 안전한 환경에서 생활할 수 있기를 바랍니다."
         },
         {
             id: 3,
@@ -44,7 +46,8 @@ function FundingDataInit() {
             author: "백종진",
             bankers: 42,
             hearts: 19,
-            finish : false
+            finish: false,
+            idea: "삼거리공원은 많은 시민이 산책과 휴식을 위해 찾는 장소이지만, 벤치와 휴게시설이 낡아 이용에 불편함이 있습니다. 파손된 벤치를 교체하고 노후 시설을 정비해 어르신과 가족 단위 이용객 모두가 편안히 쉴 수 있는 공원으로 개선되었으면 합니다."
         },
         {
             id: 4,
@@ -59,7 +62,8 @@ function FundingDataInit() {
             author: "김응석",
             bankers: 58,
             hearts: 44,
-            finish : false
+            finish: false,
+            idea: "동네 쉼터는 주민들이 일상 속에서 잠시 쉬어갈 수 있는 공간이지만, 야간 조명이 어두워 이용이 불안합니다. 쉼터 주변에 밝고 안전한 조명을 설치해 밤에도 안심하고 산책하거나 휴식을 취할 수 있는 환경이 조성되길 바랍니다."
         },
         {
             id: 5,
@@ -74,7 +78,8 @@ function FundingDataInit() {
             author: "안송이",
             bankers: 24,
             hearts: 7,
-            finish : false
+            finish: false,
+            idea: "도심 곳곳에 조성된 화단이 관리되지 않은 채 방치되어 도시 미관을 해치고 있습니다. 화단을 정비하고 계절에 맞는 꽃과 식물을 심어 시민들이 걷는 것만으로도 쾌적함을 느낄 수 있는 거리 환경이 만들어졌으면 합니다."
         },
         {
             id: 6,
@@ -89,7 +94,8 @@ function FundingDataInit() {
             author: "백종진",
             bankers: 79,
             hearts: 96,
-            finish : true
+            finish: true,
+            idea: "초등학교 주변에는 울타리가 부족하거나 끊어진 구간이 있어 아이들의 등하굣길 안전이 걱정됩니다. 차량과 보행 동선을 분리할 수 있도록 안전 울타리를 설치해 학부모와 아이들 모두가 안심할 수 있는 통학 환경을 마련해 주세요."
         },
         {
             id: 7,
@@ -104,7 +110,8 @@ function FundingDataInit() {
             author: "안송이",
             bankers: 51,
             hearts: 63,
-            finish : false
+            finish: false,
+            idea: "스쿨존 횡단보도는 특히 야간이나 비 오는 날 시야 확보가 어려워 사고 위험이 큽니다. 횡단보도에 LED 안전 표시와 추가 조명을 설치해 운전자와 보행자가 모두 쉽게 인식할 수 있도록 개선되었으면 합니다."
         },
         {
             id: 8,
@@ -119,7 +126,8 @@ function FundingDataInit() {
             bankers: 78,
             hearts: 91,
             author: "김응석",
-            finish : false
+            finish: false,
+            idea: "작은 도서관은 지역 주민과 아이들에게 중요한 문화 공간이지만, 내부 시설이 노후되어 이용이 불편합니다. 좌석과 조명을 정비하고 쾌적한 환경을 조성해 시민들이 머물고 싶은 독서 공간으로 개선되길 바랍니다."
         },
         {
             id: 9,
@@ -134,7 +142,8 @@ function FundingDataInit() {
             bankers: 53,
             hearts: 66,
             author: "안송이",
-            finish : false
+            finish: false,
+            idea: "공원과 운동장에 설치된 체육시설은 시민들의 건강을 위한 중요한 공간이지만, 일부 기구가 오래되어 부상 위험이 있습니다. 노후 기구를 교체하고 바닥과 주변 시설을 정비해 안전하게 운동할 수 있는 환경이 필요합니다."
         },
         {
             id: 10,
@@ -149,7 +158,7 @@ function FundingDataInit() {
             bankers: 80,
             hearts: 97,
             author: "백종진",
-            finish : false
+            finish: false
         },
         {
             id: 11,
@@ -164,7 +173,7 @@ function FundingDataInit() {
             bankers: 64,
             hearts: 83,
             author: "김응석",
-            finish : false
+            finish: false
         },
         {
             id: 12,
@@ -179,7 +188,7 @@ function FundingDataInit() {
             bankers: 39,
             hearts: 28,
             author: "백종진",
-            finish : false
+            finish: false
         },
         {
             id: 13,
@@ -194,7 +203,7 @@ function FundingDataInit() {
             bankers: 57,
             hearts: 61,
             author: "백종진",
-            finish : false
+            finish: false
         },
         {
             id: 14,
@@ -209,7 +218,7 @@ function FundingDataInit() {
             bankers: 34,
             hearts: 26,
             author: "김응석",
-            finish : false
+            finish: false
         },
         {
             id: 15,
@@ -224,7 +233,7 @@ function FundingDataInit() {
             bankers: 60,
             hearts: 74,
             author: "안송이",
-            finish : false
+            finish: false
         },
         {
             id: 16,
@@ -239,7 +248,7 @@ function FundingDataInit() {
             bankers: 31,
             hearts: 22,
             author: "백종진",
-            finish : false
+            finish: false
         },
         {
             id: 17,
@@ -254,7 +263,7 @@ function FundingDataInit() {
             bankers: 69,
             hearts: 85,
             author: "김응석",
-            finish : false
+            finish: false
         },
         {
             id: 18,
@@ -269,7 +278,7 @@ function FundingDataInit() {
             bankers: 47,
             hearts: 52,
             author: "김응석",
-            finish : false
+            finish: false
         },
         {
             id: 19,
@@ -284,7 +293,7 @@ function FundingDataInit() {
             bankers: 80,
             hearts: 94,
             author: "안송이",
-            finish : true
+            finish: true
         },
         {
             id: 20,
@@ -299,7 +308,7 @@ function FundingDataInit() {
             bankers: 44,
             hearts: 36,
             author: "백종진",
-            finish : false
+            finish: false
         },
         {
             id: 21,
@@ -314,7 +323,7 @@ function FundingDataInit() {
             bankers: 29,
             hearts: 18,
             author: "김응석",
-            finish : false
+            finish: false
         },
         {
             id: 22,
@@ -329,7 +338,7 @@ function FundingDataInit() {
             bankers: 71,
             hearts: 88,
             author: "안송이",
-            finish : false
+            finish: false
         },
         {
             id: 23,
@@ -344,7 +353,7 @@ function FundingDataInit() {
             bankers: 56,
             hearts: 62,
             author: "백종진",
-            finish : false
+            finish: false
         },
         {
             id: 24,
@@ -359,7 +368,7 @@ function FundingDataInit() {
             bankers: 76,
             hearts: 90,
             author: "김응석",
-            finish : false
+            finish: false
         },
         {
             id: 25,
@@ -374,7 +383,7 @@ function FundingDataInit() {
             bankers: 37,
             hearts: 29,
             author: "안송이",
-            finish : false
+            finish: false
         },
         {
             id: 26,
@@ -389,7 +398,7 @@ function FundingDataInit() {
             bankers: 58,
             hearts: 64,
             author: "김응석",
-            finish : false
+            finish: false
         },
         {
             id: 27,
@@ -404,7 +413,7 @@ function FundingDataInit() {
             bankers: 52,
             hearts: 57,
             author: "안송이",
-            finish : false
+            finish: false
         },
         {
             id: 28,
@@ -419,7 +428,7 @@ function FundingDataInit() {
             bankers: 66,
             hearts: 79,
             author: "백종진",
-            finish : false
+            finish: false
         },
         {
             id: 29,
@@ -434,7 +443,7 @@ function FundingDataInit() {
             bankers: 45,
             hearts: 41,
             author: "김응석",
-            finish : false
+            finish: false
         },
         {
             id: 30,
@@ -449,7 +458,7 @@ function FundingDataInit() {
             bankers: 61,
             hearts: 68,
             author: "안송이",
-            finish : false
+            finish: false
         },
         {
             id: 31,
@@ -464,7 +473,7 @@ function FundingDataInit() {
             bankers: 46,
             hearts: 39,
             author: "김응석",
-            finish : false
+            finish: false
         },
         {
             id: 32,
@@ -479,7 +488,7 @@ function FundingDataInit() {
             bankers: 62,
             hearts: 71,
             author: "백종진",
-            finish : false
+            finish: false
         },
         {
             id: 33,
@@ -494,7 +503,7 @@ function FundingDataInit() {
             bankers: 50,
             hearts: 55,
             author: "안송이",
-            finish : false
+            finish: false
         },
         {
             id: 34,
@@ -509,7 +518,7 @@ function FundingDataInit() {
             bankers: 54,
             hearts: 60,
             author: "김응석",
-            finish : false
+            finish: false
         },
         {
             id: 35,
@@ -524,7 +533,7 @@ function FundingDataInit() {
             bankers: 41,
             hearts: 35,
             author: "백종진",
-            finish : false
+            finish: false
         },
         {
             id: 36,
@@ -539,7 +548,7 @@ function FundingDataInit() {
             bankers: 60,
             hearts: 69,
             author: "안송이",
-            finish : false
+            finish: false
         },
         {
             id: 37,
@@ -554,7 +563,7 @@ function FundingDataInit() {
             bankers: 48,
             hearts: 53,
             author: "김응석",
-            finish : false
+            finish: false
         },
         {
             id: 38,
@@ -569,7 +578,7 @@ function FundingDataInit() {
             bankers: 52,
             hearts: 58,
             author: "백종진",
-            finish : false
+            finish: false
         },
         {
             id: 39,
@@ -584,7 +593,7 @@ function FundingDataInit() {
             bankers: 68,
             hearts: 81,
             author: "안송이",
-            finish : false
+            finish: false
         },
         {
             id: 40,
@@ -599,7 +608,7 @@ function FundingDataInit() {
             bankers: 59,
             hearts: 67,
             author: "김응석",
-            finish : false
+            finish: false
         },
         {
             id: 41,
@@ -614,7 +623,7 @@ function FundingDataInit() {
             bankers: 51,
             hearts: 56,
             author: "백종진",
-            finish : false
+            finish: false
         },
         {
             id: 42,
@@ -629,7 +638,7 @@ function FundingDataInit() {
             bankers: 43,
             hearts: 37,
             author: "안송이",
-            finish : false
+            finish: false
         },
         {
             id: 43,
@@ -644,7 +653,7 @@ function FundingDataInit() {
             bankers: 65,
             hearts: 76,
             author: "김응석",
-            finish : false
+            finish: false
         },
         {
             id: 44,
@@ -659,7 +668,7 @@ function FundingDataInit() {
             bankers: 56,
             hearts: 63,
             author: "백종진",
-            finish : false
+            finish: false
         },
         {
             id: 45,
@@ -674,7 +683,7 @@ function FundingDataInit() {
             bankers: 55,
             hearts: 21,
             author: "안송이",
-            finish : false
+            finish: false
         }
     ];
 
