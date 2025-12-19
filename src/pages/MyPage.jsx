@@ -2,7 +2,9 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 import "./MyPage.css";
 import MyInfoModal from "./MyInfoModal";
+import PaymentModal from "../pages/PaymentModal"; // ✅ 경로 수정
 import { FiUser } from "react-icons/fi";
+import MyInfoEditModal from "./MyInfoEditModal";
 
 function MyPage() {
     const navigate = useNavigate();
@@ -16,9 +18,11 @@ function MyPage() {
     const [myProjects, setMyProjects] = useState([]);
     const [myPosts, setMyPosts] = useState([]);
 
-    // 충전
-    const [chargeOpen, setChargeOpen] = useState(false);
-    const [chargeAmount, setChargeAmount] = useState("");
+    //내 정보 수정 모달
+    const [editOpen, setEditOpen] = useState(false);
+
+    // ✅ 결제 모달
+    const [paymentOpen, setPaymentOpen] = useState(false);
 
     // 🔥 회원 탈퇴 모달
     const [withdrawModalOpen, setWithdrawModalOpen] = useState(false);
@@ -41,37 +45,29 @@ function MyPage() {
         );
     }, [user]);
 
-    /* ================= 충전 ================= */
-    const handleCharge = () => {
-        const amount = Number(chargeAmount);
-        if (!amount || amount <= 0) {
-            alert("충전 금액을 선택 또는 입력하세요.");
-            return;
-        }
-
+    /* ================= 결제 성공 처리 ================= */
+    const handlePaymentSuccess = (amount) => {
         const updatedUser = {
             ...user,
             balance: (user.balance || 0) + amount,
         };
 
-        let list = JSON.parse(localStorage.getItem('계정목록'))
-        let indexes = 0
-        list.map((item,index)=>{
-            if(item.id == user.id){
-                indexes = index
-            }
-        })
-        list[indexes] = updatedUser
-        localStorage.setItem("계정목록", JSON.stringify([...list]));
-        localStorage.setItem('계정정보', JSON.stringify(updatedUser))
-        setUser(updatedUser)
-        setChargeOpen(false);
-        setChargeAmount("");
+        const list =
+            JSON.parse(localStorage.getItem("계정목록")) || [];
+
+        const index = list.findIndex(item => item.id === user.id);
+        if (index !== -1) {
+            list[index] = updatedUser;
+        }
+
+        localStorage.setItem("계정목록", JSON.stringify(list));
+        localStorage.setItem("계정정보", JSON.stringify(updatedUser));
+        setUser(updatedUser);
     };
 
     /* ================= 회원 탈퇴 ================= */
     const handleWithdraw = () => {
-        setWithdrawModalOpen(true); // ✅ 모달만 열기
+        setWithdrawModalOpen(true);
     };
 
     const confirmWithdraw = () => {
@@ -103,85 +99,69 @@ function MyPage() {
                     <FiUser size={30} /> 마이페이지
                 </h2>
 
-                {/* 프로필 */}
+                {/* ================= 프로필 ================= */}
                 <div className="mypage-profile">
-                    <div>
+                    <div className="mypage-profile-left">
                         <strong>{user.name}님</strong>
                         <p>회원 등급 : {user.level}</p>
                     </div>
-                    <button
-                        className="mypage-edit-btn"
-                        onClick={() => setInfoOpen(true)}
-                    >
-                        내 정보 확인
-                    </button>
 
+                    <div className="mypage-profile-btns">
+                        <button
+                            className="mypage-edit-btn"
+                            onClick={() => setInfoOpen(true)}
+                        >
+                            내 정보 확인
+                        </button>
+
+                        <button
+                            className="mypage-edit-btn outline"
+                            onClick={() => setEditOpen(true)}
+                        >
+                            내 정보 수정
+                        </button>
+                    </div>
                     {infoOpen && (
                         <MyInfoModal
                             user={user}
                             onClose={() => setInfoOpen(false)}
                         />
                     )}
+
+                    {editOpen && (
+                        <MyInfoEditModal
+                            user={user}
+                            onClose={() => setEditOpen(false)}
+                            onUpdate={setUser}
+                        />
+                    )}
                 </div>
 
-                {/* 잔고 */}
+                {/* ================= 잔고 ================= */}
                 <div className="mypage-balance-box">
                     <div>
                         <span>나의 잔고</span>
-                        <strong>{(user.balance || 0).toLocaleString()}원</strong>
+                        <strong>
+                            {(user.balance || 0).toLocaleString()}원
+                        </strong>
                     </div>
+
                     <div>
                         <span>총 후원 금액</span>
-                        <strong>{(user.totalDonate || 0).toLocaleString()}원</strong>
+                        <strong>
+                            {(user.totalDonate || 0).toLocaleString()}원
+                        </strong>
                     </div>
+
                     <button
                         className="mypage-charge-btn"
-                        onClick={() => setChargeOpen(true)}
+                        onClick={() => setPaymentOpen(true)}
                     >
                         충전하기
                     </button>
                 </div>
 
-                {/* ================= 충전 모달 ================= */}
-                {chargeOpen && (
-                    <div className="charge-modal">
-                        <h3>결제 금액 선택</h3>
-
-                        <div className="charge-quick">
-                            {[10000, 50000, 100000].map(price => (
-                                <button
-                                    key={price}
-                                    onClick={() => setChargeAmount(price)}
-                                >
-                                    {price.toLocaleString()}원
-                                </button>
-                            ))}
-                        </div>
-
-                        <input
-                            type="number"
-                            placeholder="직접 입력"
-                            value={chargeAmount}
-                            onChange={(e) => setChargeAmount(e.target.value)}
-                        />
-
-                        <button
-                            className="charge-confirm-btn"
-                            onClick={handleCharge}
-                        >
-                            간편 결제
-                        </button>
-
-                        <button
-                            className="charge-cancel-btn"
-                            onClick={() => setChargeOpen(false)}
-                        >
-                            취소
-                        </button>
-                    </div>
-                )}
-
-                {/* 탭 */}
+                {/* ================= 탭 ================= */}
                 <div className="mypage-tabs">
                     <button
                         className={activeTab === "project" ? "active" : ""}
@@ -197,7 +177,7 @@ function MyPage() {
                     </button>
                 </div>
 
-                {/* 콘텐츠 */}
+                {/* ================= 콘텐츠 ================= */}
                 <div className="mypage-content">
                     {activeTab === "project" &&
                         myProjects.map(project => (
@@ -213,32 +193,37 @@ function MyPage() {
                                 <p>{project.subTitle}</p>
                             </div>
                         ))}
-                </div>
 
-                {activeTab === "post" && (
-                    myPosts.length === 0 ? (
-                        <p className="mypage-empty-text">
-                            작성한 게시물이 없습니다.
-                        </p>
-                    ) : (
-                        myPosts.map(post => (
-                            <div
-                                key={post.id}
-                                className="mypage-card"
-                                onClick={() => {
-                                    navigate(`/community/${post.id}`);
-                                    window.scrollTo(0, 0);
-                                }}
-                            >
-                                <strong>{post.title}</strong>
-                                <p>{post.content}</p>
-                                <span style={{ fontSize: "13px", color: "#777" }}>
-                                    [{post.category}]
-                                </span>
-                            </div>
-                        ))
-                    )
-                )}
+                    {activeTab === "post" && (
+                        myPosts.length === 0 ? (
+                            <p className="mypage-empty-text">
+                                작성한 게시물이 없습니다.
+                            </p>
+                        ) : (
+                            myPosts.map(post => (
+                                <div
+                                    key={post.id}
+                                    className="mypage-card"
+                                    onClick={() => {
+                                        navigate(`/community/${post.id}`);
+                                        window.scrollTo(0, 0);
+                                    }}
+                                >
+                                    <strong>{post.title}</strong>
+                                    <p>{post.content}</p>
+                                    <span
+                                        style={{
+                                            fontSize: "13px",
+                                            color: "#777"
+                                        }}
+                                    >
+                                        [{post.category}]
+                                    </span>
+                                </div>
+                            ))
+                        )
+                    )}
+                </div>
 
                 {/* ================= 회원 탈퇴 ================= */}
                 <div className="mypage-danger-zone">
@@ -251,6 +236,14 @@ function MyPage() {
                 </div>
 
             </div>
+
+            {/* ================= 결제 모달 ================= */}
+            {paymentOpen && (
+                <PaymentModal
+                    onClose={() => setPaymentOpen(false)}
+                    onSuccess={handlePaymentSuccess}
+                />
+            )}
 
             {/* ================= 회원 탈퇴 모달 ================= */}
             {withdrawModalOpen && (
@@ -280,7 +273,6 @@ function MyPage() {
                     </div>
                 </div>
             )}
-
         </section>
     );
 }
