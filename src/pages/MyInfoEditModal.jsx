@@ -1,5 +1,6 @@
 import { useState } from "react";
 import "./MyInfoEditModal.css";
+import PasswordChangeModal from "./PasswordChangeModal";
 
 function MyInfoEditModal({ user, onClose, onUpdate }) {
     const [form, setForm] = useState({
@@ -47,6 +48,8 @@ function MyInfoEditModal({ user, onClose, onUpdate }) {
         onUpdate(updatedUser);
         onClose();
     };
+    const [passwordOpen, setPasswordOpen] = useState(false);
+
 
     return (
         <div className="edit-modal-bg">
@@ -99,6 +102,12 @@ function MyInfoEditModal({ user, onClose, onUpdate }) {
                         onChange={handleChange}
                     />
                 </label>
+                <button
+                    className="edit-password-btn"
+                    onClick={() => setPasswordOpen(true)}
+                >
+                    비밀번호 변경
+                </button>
 
                 <div className="edit-modal-btns">
                     <button
@@ -116,6 +125,13 @@ function MyInfoEditModal({ user, onClose, onUpdate }) {
                 </div>
 
             </div>
+            {passwordOpen && (
+                <PasswordChangeModal
+                    user={user}
+                    onClose={() => setPasswordOpen(false)}
+                    onUpdate={onUpdate}
+                />
+            )}
         </div>
     );
 }

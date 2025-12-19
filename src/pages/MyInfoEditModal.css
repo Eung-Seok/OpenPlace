@@ -91,3 +91,14 @@
     background: #f1f1f1;
     color: #333;
 }
+.edit-password-btn {
+    width: 100%;
+    margin: 10px 0 4px;
+    padding: 12px;
+    border-radius: 10px;
+    border: 1px solid #09947d;
+    background: #fff;
+    color: #09947d;
+    font-weight: 600;
+    cursor: pointer;
+}
