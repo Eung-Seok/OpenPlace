@@ -1,3 +1,5 @@
+
+
 /* =========================
    Layout
 ========================= */
@@ -101,6 +103,7 @@
 .funding-detail2-desc-title {
     font-size: 22px;
     font-weight: 600;
+
 }
 
 .funding-detail2-desc {
@@ -108,6 +111,7 @@
     line-height: 1.7;
     color: #333;
     margin-bottom: 20px;
+
 }
 
 
@@ -119,7 +123,7 @@
     display: flex;
     justify-content: space-between;
     padding-top: 20px;
-    border-top: 1px solid #ddd;
+    background: #f6fbfa;
 }
 
 .progress-h-step {
@@ -130,7 +134,7 @@
 }
 
 .progress-h-step.active {
-   color: #252525;
+    color: #252525;
 }
 
 .progress-h-circle {
@@ -252,4 +256,100 @@
 .log-date {
     font-size: 12px;
     color: #999;
+}
+
+/* =========================
+   Funding Summary (후원 요약)
+========================= */
+
+.funding-detail2-summary {
+    margin-bottom: 32px;
+}
+
+/* 후원자 / 좋아요 상단 */
+.summary-top {
+    display: flex;
+    justify-content: flex-start; /* 핵심 */
+    gap: 80px;                  /* 간격은 여기서 조절 */
+    margin-bottom: 16px;
+}
+
+/* 각 항목 */
+.summary-item {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+/* 라벨 */
+.summary-item .label {
+    font-size: 16px;
+    font-weight: 500;
+    color: #222;
+}
+
+/* 숫자 (20 / 99) */
+.summary-item .value {
+    font-size: 56px;
+    font-weight: 700;
+    line-height: 1;
+    color: #222;
+}
+
+/* 좋아요 한 줄 */
+.like-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* 하트 아이콘 */
+.heart-icon {
+    font-size: 48px;
+    line-height: 1;
+    color: #222;
+}
+
+/* 모인 금액 */
+.summary-amount {
+    font-size: 36px;
+    font-weight: 800;
+    color: #09947d;
+    margin: 12px 0 4px;
+}
+
+.summary-amount span {
+    font-size: 18px;
+    margin-left: 4px;
+}
+
+/* 목표 금액 */
+.summary-goal {
+    font-size: 14px;
+    color: #666;
+}
+
+/* 게이지 */
+.summary-gauge {
+    margin-top: 14px;
+}
+
+.gauge-top {
+    display: flex;
+    justify-content: space-between;
+    font-size: 14px;
+    margin-bottom: 6px;
+}
+
+.gauge-bar {
+    height: 12px;
+    background: #ddd;
+    border-radius: 6px;
+    overflow: hidden;
+}
+
+.gauge-bar span {
+    display: block;
+    height: 100%;
+    background: #3b82f6;
 }

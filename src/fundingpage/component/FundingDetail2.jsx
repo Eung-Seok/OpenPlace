@@ -44,6 +44,47 @@ function FundingDetail2({ data }) {
                 {/* 오른쪽 설명 */}
                 <div className="funding-detail2-desc-box">
 
+                    {/* ===== 후원 요약 ===== */}
+                    <div className="funding-detail2-summary">
+                        <div className="summary-top">
+
+                            <div className="summary-item">
+                                <span className="label">후원자</span>
+                                <span className="value">{data.bankers || 0}</span>
+                            </div>
+
+                            <div className="summary-item">
+                                <span className="label">좋아요</span>
+                                <span className="like-row">
+                                    <span className="heart-icon">♡</span>
+                                    <span className="value">{data.hearts || 0}</span>
+                                </span>
+                            </div>
+
+                        </div>
+
+                        <p className="summary-amount">
+                            {(
+                                (data.currentAmount ?? data.goalAmount) / 10000
+                            ).toLocaleString()}
+                            <span>만원</span>
+                        </p>
+
+                        <p className="summary-goal">
+                            목표금액: {(data.goalAmount / 10000).toLocaleString()} 만원
+                        </p>
+
+                        <div className="summary-gauge">
+                            <div className="gauge-top">
+                                <span>100%</span>
+                                <span>모금 완료</span>
+                            </div>
+                            <div className="gauge-bar">
+                                <span style={{ width: "100%" }} />
+                            </div>
+                        </div>
+                    </div>
+
                     <h3 className="funding-detail2-desc-title">
                         프로젝트 내용
                     </h3>
@@ -52,24 +93,21 @@ function FundingDetail2({ data }) {
                         {data.description || data.subTitle}
                     </p>
 
-                    {/* ===== 진행 단계 (로그 기반 매칭) ===== */}
+                    {/* ===== 진행 단계 ===== */}
                     <div className="funding-detail2-progress-horizontal">
                         {steps.map(step => {
-                            // ⭐ 해당 step의 로그 찾기
                             const log = logs.find(l => l.step === step.step);
 
                             return (
                                 <div
                                     key={step.step}
-                                    className={`progress-h-step 
-                                        ${step.step <= currentStep ? "active" : ""}`}
+                                    className={`progress-h-step ${step.step <= currentStep ? "active" : ""}`}
                                 >
                                     <div className="progress-h-circle">
                                         {step.step}
                                     </div>
 
                                     <p className="progress-h-title">
-                                        {/* 로그에 title 있으면 우선 사용 */}
                                         {log?.title || step.title}
                                     </p>
 
@@ -96,11 +134,11 @@ function FundingDetail2({ data }) {
                             <div
                                 key={log.step}
                                 className={`funding-detail2-log-card
-                                    ${log.step > currentStep ? "pending" : ""}`}
+                                ${log.step > currentStep ? "pending" : ""}`}
                             >
                                 <span
                                     className={`log-step-badge
-                                        ${log.step <= currentStep ? "active" : ""}`}
+                                    ${log.step <= currentStep ? "active" : ""}`}
                                 >
                                     {log.step}
                                 </span>
@@ -133,8 +171,10 @@ function FundingDetail2({ data }) {
                     </div>
                 </div>
             )}
+
         </div>
     );
-}
+
+};
 
 export default FundingDetail2;
