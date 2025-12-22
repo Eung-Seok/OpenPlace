@@ -31,6 +31,7 @@ function FundingList() {
     let items = [];
     let pages = [];
     let loginInfo = JSON.parse(localStorage.getItem('계정정보'))
+    let nowLogin = JSON.parse(localStorage.getItem('로그인현황'))
     for (let number = 1; number <= fundingData.length / 10 + 1; number++) {
         items.push(
             <Pagination.Item key={number} active={number == page} onClick={() => {
@@ -117,9 +118,9 @@ function FundingList() {
 
                 {/* 펀딩 공통 메뉴바 */}
 
-                <div className={"funding-filter " + (loginInfo.level == '관리자' ? ' ' : 'funding-button-hidden ')}>
+                <div className={"funding-filter "}>
                     <ComboBox1 selected={boxSelected} onSelect={setBoxSelected} />
-                    <button type="button" className="funding-btn-success btn-success" style={{ float: 'right', clear: 'both', marginBottom: '16px', fontSize: '25px' }} onClick={() => {
+                    <button type="button" className={"funding-btn-success btn-success " + (loginInfo.level == '관리자' ? ' ' : 'funding-button-hidden ') } style={{ float: 'right', clear: 'both', marginBottom: '16px', fontSize: '25px' }} onClick={() => {
                         navigate('/funding/create')
                         window.scrollTo(0, 0)
                     }}>등록하기</button>
@@ -150,7 +151,7 @@ function FundingList() {
                         Search
                     </button>
                 </div>
-                <div style={{ marginTop:'40px',justifyItems: 'center', display: 'flex', justifyContent: 'center' }}>
+                <div style={{ marginTop: '40px', justifyItems: 'center', display: 'flex', justifyContent: 'center' }}>
                     <button
                         className="funding-more-btn"
                         onClick={() => {
@@ -185,8 +186,14 @@ function FundingList() {
                     <div className={"funding-register-actions "} >
                         <Button className="funding-create-btn"
                             onClick={() => {
-                                navigate("/community/write");
-                                window.scrollTo(0, 0);
+                                if (!nowLogin) {
+                                    localStorage.setItem('마지막 주소', JSON.stringify(nowpage.pathname))
+                                    navigate('/login')
+                                    window.scrollTo(0, 0);
+                                } else {
+                                    navigate("/community/write");
+                                    window.scrollTo(0, 0);
+                                }
                             }}
                         >지역 제보하기</Button>
                     </div>

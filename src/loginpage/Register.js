@@ -270,7 +270,7 @@ function Register() {
                         </div>
                     </div>
                     <ul>
-                        {errorMsg.id && errorMsg.idEqual && <li className="errorMsg">아이디가 중복됩니다</li>}
+                        {errorMsg.id && errorMsg.idEqual && <li className="errorMsg">중복된 아이디입니다</li>}
                         {errorMsg.id && !errorMsg.idEqual && <li className="errorMsg">아이디를 입력해주세요</li>}
                         {errorMsg.pw && <li className="errorMsg">비밀번호를 입력해주세요</li>}
                         {errorMsg.email && <li className="errorMsg">이메일주소를 입력해주세요</li>}
