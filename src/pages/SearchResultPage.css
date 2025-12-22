@@ -1,5 +1,5 @@
 /* ===============================
-   전체 페이지
+전체 페이지
 ================================ */
 .search-page {
     max-width: 1200px;
@@ -14,7 +14,7 @@
 }
 
 /* ===============================
-   섹션 공통
+섹션 공통
 ================================ */
 .search-section {
     margin-bottom: 50px;
@@ -137,4 +137,71 @@
     gap: 4px;
     padding-bottom: 16px;
     margin-top: 10px;
+}
+
+.search-page-search {
+    /* margin: 0 auto; */
+    margin-top: 20px;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    height: 50px;
+    border-radius: 14px;
+    width: 450px;
+    max-width: 100%;
+}
+
+/* input */
+.search-page-search input {
+    flex: 1;
+    /* ⭐ 핵심 */
+    border: none;
+    outline: none;
+
+    padding: 14px 16px;
+    font-size: 15px;
+    color: #333;
+
+    background: transparent;
+    font-family: "Poppins", sans-serif;
+    min-width: 0;
+
+}
+
+.search-page-search input::placeholder {
+    color: #9aa5a1;
+    font-size: 14px;
+}
+
+/* button */
+.search-page-search button {
+    flex-shrink: 0;
+    /* ⭐ 버튼 밀리지 않게 */
+    border: none;
+    border-radius: 10px;
+
+    background-color: #066b59;
+    color: #ffffff;
+
+    padding: 12px 22px;
+    font-size: 14px;
+    font-weight: 600;
+
+    cursor: pointer;
+    white-space: nowrap;
+    transition: all 0.2s ease;
+}
+
+.search-page-search button:hover {
+    background-color: #055a4c;
+}
+
+.search-page-search button:active {
+    transform: scale(0.96);
+}
+
+/* focus */
+.search-page-search:focus-within {
+    box-shadow:
+        0 0 0 2px rgba(6, 107, 89, 0.25)
 }

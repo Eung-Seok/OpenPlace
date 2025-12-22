@@ -70,6 +70,13 @@ function Header() {
                     <nav>
                         <ul className="d-flex gap-4 mb-0">
                             <li>
+                                <button className="header-button-find">
+                                    <i className="header-image-find" onClick={()=>
+                                        navigate(`/search?query=${encodeURIComponent('')}`)
+                                    }/>
+                                </button>
+                            </li>
+                            <li>
                                 <Link
                                     to="/funding/main/1"
                                     className="nav-link"

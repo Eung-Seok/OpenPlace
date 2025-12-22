@@ -1,10 +1,17 @@
 import { useLocation, useNavigate } from "react-router";
 import "./SearchResultPage.css";
+import { useState } from "react";
 
 function SearchResultPage() {
     const navigate = useNavigate();
     const { search } = useLocation();
     const query = new URLSearchParams(search).get("query");
+    let [keyword,setKeyword] = useState(query)
+    const handleSearch = () => {
+        if (!keyword.trim()) return; // 빈 값 방지
+        navigate(`/search?query=${encodeURIComponent(keyword)}`);
+    };
+
 
     // ========================
     // 데이터 로드
@@ -43,8 +50,24 @@ function SearchResultPage() {
 
     return (
         <div className="search-page">
+            
             <h2 className="search-title">🔍 “{query}” 검색 결과</h2>
-
+            <div className="search-page-search">
+                <input
+                    type="text"
+                    value={keyword}
+                    onChange={(e) => setKeyword(e.target.value)}
+                    placeholder="검색어를 입력해 주세요"
+                    onKeyDown={(e) => {
+                        if (e.key === "Enter") {
+                            handleSearch();
+                        }
+                    }}
+                />
+                <button className="community-search-button" type="button" onClick={handleSearch}>
+                    Search
+                </button>
+            </div>
             {/* ================= 지역 제보 ================= */}
             <section className="search-section">
                 <h3 className="search-section-title">지역 제보</h3>
