@@ -376,7 +376,7 @@
 }
 .register-image{
     align-self: center;
-    width: 300px; /* 혹은 70% 정도로 설정 */
+    width: 300px;
     display: block;
     cursor: pointer;
 }

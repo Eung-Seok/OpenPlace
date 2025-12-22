@@ -294,7 +294,7 @@
 
 .login-image{
     align-self: center;
-    width: 300px; /* 혹은 70% 정도로 설정 */
+    width: 300px;
     display: block;
     cursor: pointer;
 }
@@ -306,7 +306,7 @@
     display: flex;
     justify-content: center; /* 이미지 중앙 정렬 */
     width: 100%;
-    margin-bottom: -140px;
+    margin-bottom: -10%;
 }
 .register-image{
     align-self: center;
