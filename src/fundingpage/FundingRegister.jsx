@@ -135,7 +135,7 @@ function FundingRegister() {
                     newFundingData.title = title;
                     let temp = [newFundingData, ...fundingData];
                     setFundingData(temp);
-                    localStorage.setItem('펀딩데이터', JSON.stringify(fundingData))
+                    localStorage.setItem('펀딩데이터', JSON.stringify(temp))
                     navigate("/funding/main/1");
                 }
                 window.scrollTo(0, 0);
