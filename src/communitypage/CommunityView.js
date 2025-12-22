@@ -6,6 +6,7 @@ import Patch from './components/Patch';
 import { useEffect } from 'react';
 
 function CommunityView() {
+    const [logoutModalOpen, setLogoutModalOpen] = useState(false);
     let [alertMsg, setAlertMsg] = useState('')
     let [count, setCount] = useState(0)
     let nowpage = useLocation();
@@ -112,14 +113,7 @@ function CommunityView() {
                         </span>
                         <span className={((loginInfo.id == data.authorId) || (loginInfo.level == '관리자') ? ' ' : 'community-view-hide')}>
                             <span onClick={() => {
-                                let dataList = JSON.parse(localStorage.getItem('통합데이터'))
-                                dataList = dataList.filter((item) => {
-                                    return item.id != id
-                                })
-                                setCount(count + 1);
-                                localStorage.setItem('통합데이터', JSON.stringify(dataList))
-                                navigate('/community/main/1')
-                                window.scrollTo(0, 0)
+                                setLogoutModalOpen(true)
                             }}>삭제</span>
                         </span>
                     </div>
@@ -184,6 +178,39 @@ function CommunityView() {
                         </button>
                     </div>
                 </div >
+            )}
+            {logoutModalOpen && (
+                <div className="logout-modal-backdrop">
+                    <div className="logout-modal-box">
+                        <p className="logout-modal-text">
+                            삭제하시겠습니까?
+                        </p>
+
+                        <div className="logout-modal-btn-group">
+                            <button
+                                className="logout-modal-confirm-btn"
+                                onClick={() => {
+                                    let dataList = JSON.parse(localStorage.getItem('통합데이터'))
+                                    dataList = dataList.filter((item) => {
+                                        return item.id != id
+                                    })
+                                    setCount(count + 1);
+                                    localStorage.setItem('통합데이터', JSON.stringify(dataList))
+                                    navigate('/community/main/1')
+                                    window.scrollTo(0, 0)
+                                }}
+                            >
+                                확인
+                            </button>
+                            <button
+                                className="logout-modal-cancel-btn"
+                                onClick={() => setLogoutModalOpen(false)}
+                            >
+                                취소
+                            </button>
+                        </div>
+                    </div>
+                </div>
             )}
         </div>
     );
