@@ -89,6 +89,7 @@ function FundingDetail1({ data, onUpdate }) {
         }
 
         tempdata.rate += 100 * amount / tempdata.goalAmount
+        tempdata.bankers++;
         fundingList[id - 1] = tempdata
         localStorage.setItem('펀딩데이터', JSON.stringify(fundingList))
         localStorage.setItem("계정목록", JSON.stringify(list));
@@ -185,7 +186,7 @@ function FundingDetail1({ data, onUpdate }) {
                                 </div>
                                 <div className="funding-explan-text">
                                     <div className="funding-p-row2">
-                                        <p className="funding-support-normal-text">후원자</p>
+                                        <p className="funding-support-normal-text">후원수</p>
                                         <p className="funding-support-normal-text">좋아요</p>
                                     </div>
                                     <div className="funding-p-row">
