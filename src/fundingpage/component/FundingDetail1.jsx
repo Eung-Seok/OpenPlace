@@ -20,8 +20,7 @@ function FundingDetail1({ data }) {
     const [donateOpen, setDonateOpen] = useState(false);
     const [donateAmount, setDonateAmount] = useState("");
 
-    const [user, setUser] = useState(JSON.parse(localStorage.getItem("계정정보")));
-    const isLogin = localStorage.getItem("로그인현황") === "true";
+    const [currentUser, setCurrentUser] = useState(JSON.parse(localStorage.getItem("계정정보")));
 
 
     // 아이디어 후원자 댓글 메뉴바
@@ -38,8 +37,20 @@ function FundingDetail1({ data }) {
         setLiked(!liked);
     };
 
+    const handleAddComment = () => {
+        if (!newComment.trim()) return;
+
+        // currentUser를 사용
+        const commentObj = {
+            name: currentUser?.name || currentUser?.id || "익명",
+            text: newComment
+        };
+        setComments([...comments, commentObj]);
+        setNewComment("");
+    };
+
     const handleSupportClick = () => {
-        if (!isLogin || !user) {
+        if (!isLogin || !currentUser) {
             setAlertMsg("로그인 후 후원하실 수 있습니다.");
             return;
         }
@@ -54,26 +65,26 @@ function FundingDetail1({ data }) {
             return;
         }
 
-        if ((user.balance || 0) < amount) {
+        if ((currentUser.balance || 0) < amount) {
             setAlertMsg("잔고가 부족합니다.");
             return;
         }
 
         const updatedUser = {
-            ...user,
-            balance: (user.balance || 0) - amount,
-            totalDonate: (user.totalDonate || 0) + amount,
+            ...currentUser,
+            balance: (currentUser.balance || 0) - amount,
+            totalDonate: (currentUser.totalDonate || 0) + amount,
         };
 
         let list = JSON.parse(localStorage.getItem("계정목록")) || [];
-        const index = list.findIndex(item => item.id === user.id);
+        const index = list.findIndex(item => item.id === currentUser.id);
 
         if (index !== -1) {
             list[index] = updatedUser;
         }
         localStorage.setItem("계정목록", JSON.stringify(list));
         localStorage.setItem("계정정보", JSON.stringify(updatedUser));
-        setUser(updatedUser);
+        setCurrentUser(updatedUser);
 
         setAlertMsg(`${amount.toLocaleString()}원 후원 완료!`);
 
@@ -105,7 +116,37 @@ function FundingDetail1({ data }) {
     const totalGoal = data.goalAmount;
     const totalBankerAmount = Math.floor(data.goalAmount * data.rate / 100);
     const remainingAmount = totalGoal - totalBankerAmount;
+    const remainingPercent = 100 - data.rate;
 
+
+
+    function getTopBankerColor(idx) {
+        const colors = ["#ff4d4d", "#4da6ff", "#ffd24d"]; // 탑3 색상
+        return colors[idx] || "#ccc";
+    }
+
+    // 댓글 추가 함수
+    const [comments, setComments] = useState([
+        { name: "홍길동", text: "숲놀이터가 안전하게 개선되면 아이들이 마음껏 뛰어놀 수 있을 것 같아요!" },
+        { name: "김철수", text: "그네와 미끄럼틀이 노후되어 있어서 새로 교체되면 좋겠습니다." },
+        { name: "이영희", text: "숲놀이터 주변 산책로도 함께 정비되면 가족들이 편하게 이용할 수 있을 것 같아요." },
+        { name: "전우치", text: "그늘막과 벤치도 늘어나면 아이들 부모님들이 쉴 공간이 생겨 좋겠습니다." }
+    ]);
+    const [newComment, setNewComment] = useState("");
+
+    const isLogin = !!currentUser;
+
+
+    const locationMap = {
+    1: { lat: 36.7960, lng: 127.1470 },
+    2: { lat: 36.87839, lng: 127.15527 },
+    3: { lat: 36.7833, lng: 127.1684 },
+    4: { lat: 36.8283, lng: 127.1520 }, 
+    5: { lat: 36.7890, lng: 127.1470 }, 
+    6: { lat: 36.7909, lng: 127.1322 }, 
+    7: { lat: 36.8120, lng: 127.1400 }, 
+    9: { lat: 36.8170, lng: 127.1090 }  
+};
 
 
 
@@ -201,7 +242,7 @@ function FundingDetail1({ data }) {
                                             <button
                                                 className="donate-btn"
                                                 onClick={() => {
-                                                    if (isLogin && user) {
+                                                    if (isLogin && currentUser) {
                                                         // 로그인 되어 있으면 모달 열기
                                                         setDonateOpen(true);
                                                     } else {
@@ -280,7 +321,7 @@ function FundingDetail1({ data }) {
                                                 className="funding-tab-box"
                                                 style={{
                                                     display: "flex",
-                                                    gap: "20px",
+                                                    gap: "70px",
                                                     alignItems: "flex-start"
                                                 }}
                                             >
@@ -297,17 +338,19 @@ function FundingDetail1({ data }) {
 
                                                 {/* 오른쪽 지도 */}
                                                 <KakaoMap
-                                                    lat={36.7960}
-                                                    lng={127.1470}
-                                                    style={{ width: "60%", height: "400px", borderRadius: "12px", flexShrink: 0, marginLeft: '120px' }}
+                                                    lat={locationMap[id]?.lat || 36.7960}
+                                                    lng={locationMap[id]?.lng || 127.1470}
+                                                    style={{ width: "60%", height: "400px", borderRadius: "12px", flexShrink: 0}}
                                                 />
 
                                             </div>
                                         </div>
                                     )}
+                                </div>
 
 
-                                    {activeTab === "supporter" && (
+                                {activeTab === "supporter" && (
+                                    <div className="funding-tab-content">
                                         <div>
                                             <div className="funding-list-line2"></div>
                                             {activeTab === "supporter" && (
@@ -342,7 +385,7 @@ function FundingDetail1({ data }) {
                                                                     <div
                                                                         className="banker-segment remaining"
                                                                         style={{
-                                                                            width: `${(remainingAmount / totalGoal) * 100}%`,
+                                                                            width: `${remainingPercent}%`,
                                                                             background: "#ccc"
                                                                         }}
                                                                     >
@@ -353,24 +396,75 @@ function FundingDetail1({ data }) {
                                                                 )}
                                                             </div>
                                                         </div>
+                                                        <div className="top-banker-info">
+                                                            {bankers.slice(0, 3).map((b, idx) => (
+                                                                <div key={idx} className="top-banker-item">
+                                                                    <div className={`top-banker-circle top-banker-${idx + 1}`}></div>
+                                                                    <div className="top-banker-text">
+                                                                        <span className="top-banker-name">{b.name}</span>
+                                                                        <span className="top-banker-amount">{b.amount.toLocaleString()}원</span>
+                                                                    </div>
+                                                                </div>
+                                                            ))}
+                                                            {bankers.length > 3 && (
+                                                                <div className="top-banker-item">
+                                                                    <div className="top-banker-circle top-banker-others"></div>
+                                                                    <div className="top-banker-text">
+                                                                        <span className="top-banker-name">{bankers[3].name}</span>
+                                                                        <span className="top-banker-amount">{bankers[3].amount.toLocaleString()}원</span>
+                                                                    </div>
+                                                                </div>
+                                                            )}
+                                                        </div>
+
                                                     </div>
                                                 </div>
                                             )}
-
                                         </div>
-                                    )}
+                                    </div>
+                                )}
 
-                                    {activeTab === "comment" && (
-                                        <div>
-                                            <div className="funding-list-line2"></div>
-                                            <div className="funding-tab-box2">
 
-                                                <p className="funding-support-subtitle">{ }</p>
+                                {activeTab === "comment" && (
+                                    <div>
+                                        <div className="funding-list-line2"></div>
+                                        <div className="funding-tab-box2">
+                                            <p className="funding-support-subtitle" style={{ fontSize: '28px', marginBottom: '18px' }}>
+                                                댓글
+                                            </p>
+                                            <div className="comment-container">
+                                                <div className="comment-list">
+                                                    {comments.map((c, idx) => (
+                                                        <div key={idx} className="comment-item">
+                                                            <strong>{c.name}</strong>: {c.text}
+                                                        </div>
+                                                    ))}
+                                                </div>
+
+                                                <div className="comment-input-area" style={{ marginTop: '50px' }}>
+                                                    <span style={{ fontWeight: 'bold', paddingRight: '30px' }}>
+                                                        닉네임 : {currentUser?.name || currentUser?.id || "익명"}
+                                                    </span>
+                                                    <input
+                                                        type="text"
+                                                        placeholder="댓글을 작성해주세요"
+                                                        value={newComment}
+                                                        onChange={(e) => setNewComment(e.target.value)}
+                                                        style={{ width: '80%', padding: '8px', borderRadius: '6px', border: '1px solid #ccc' }}
+                                                    />
+                                                    <button
+                                                        onClick={handleAddComment}
+                                                        style={{ marginLeft: '10px', padding: '8px 16px', borderRadius: '6px', background: '#09947d', color: '#fff', border: 'none', cursor: 'pointer' }}
+                                                    >
+                                                        작성
+                                                    </button>
+                                                </div>
                                             </div>
                                         </div>
-                                    )}
+                                    </div>
+                                )}
 
-                                </div>
+
 
                             </div>
 

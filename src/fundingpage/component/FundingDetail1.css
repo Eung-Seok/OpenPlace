@@ -247,6 +247,7 @@
     height: auto;
 }
 
+
 /* 메뉴 박스 높이 */
 .funding-tab-box {
     width: 660px;
@@ -322,7 +323,7 @@
 /* 실제 컨텐츠 영역 */
 .funding-container {
     width: 100%;
-    /* max-width: 1200px; */
+    max-width: 1200px;
     /* min-width: 320px; */
     margin: 0 auto;
 }
@@ -410,3 +411,59 @@
 .funding-tab-content {
     width: 100%;
 }
+
+.top-banker-info {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.top-banker-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.top-banker-circle {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+}
+
+/* 게이지 색상과 동일하게 */
+.top-banker-1 {
+    background: #09947d;
+}
+
+.top-banker-2 {
+    background: #1db59b;
+}
+
+.top-banker-3 {
+    background: #6adbc9;
+}
+
+.top-banker-text {
+    display: flex;
+    flex-direction: column;
+}
+
+.top-banker-name {
+    font-weight: bold;
+}
+
+.top-banker-amount {
+    color: #555;
+}
+
+.top-banker-others {
+    background: #b4b4b4;
+}
+
+.comment-container {
+    width: 100%;
+    padding: 20px;
+}
+
