@@ -9,6 +9,7 @@
     background-color: #ffffff;
     margin: 0 auto;
     padding: 40px;
+    width: 1275px;
 }
 
 
@@ -806,4 +807,8 @@
     margin: 0 !important; 
     display: flex;
     align-items: center;
+}
+
+.funding-button-hidden{
+    display: none;
 }
