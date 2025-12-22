@@ -62,7 +62,7 @@ function CommunitySearch() {
 
     useEffect(() => {
         let sortedList = totalList.filter((item) => {
-            return item.title.includes(searchword)
+            return (item.title.includes(searchword) ||item.content.includes(searchword)) 
         })
         if (boxSelected == '좋아요순') {
             sortedList.sort((a, b) => (b.likes || 0) - (a.likes || 0))

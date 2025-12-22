@@ -16,7 +16,8 @@ function SearchResultPage() {
     // 커뮤니티 검색
     // ========================
     const searchedData = totalData.filter(item =>
-        item.title?.includes(query)
+        item.title?.includes(query) ||
+        item.content?.includes(query)
     );
 
     const reportResults = searchedData.filter(
