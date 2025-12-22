@@ -48,7 +48,7 @@ function CommunityWrite() {
                     <label>카테고리 선택</label>
                     <select id='category'>
                         <option>자유게시판</option>
-                        <option>지역 제보</option>
+                        <option selected>지역 제보</option>
                         <option>프로젝트 후기</option>
                     </select>
 

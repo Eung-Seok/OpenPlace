@@ -188,7 +188,7 @@ function FundingList() {
                                 navigate("/community/write");
                                 window.scrollTo(0, 0);
                             }}
-                        >펀딩 등록하기</Button>
+                        >지역 제보하기</Button>
                     </div>
                 </div>
             </section>
