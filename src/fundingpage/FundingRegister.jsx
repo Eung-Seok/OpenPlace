@@ -10,7 +10,7 @@ function FundingRegister() {
 
     // 저장 버튼 이동
     const navigate = useNavigate();
-    const [fundingData,setFundingData ]= useState(JSON.parse(localStorage.getItem('펀딩데이터')))
+    const [fundingData, setFundingData] = useState(JSON.parse(localStorage.getItem('펀딩데이터')))
 
     // 필수입력창 이동
     const scrollToWithOffset = (id) => {
@@ -34,22 +34,7 @@ function FundingRegister() {
         timeLeft: false,
     });
 
-    const handleSave = () => {
-        const newErrors = {
-            title: !title,
-            location: !location,
-            summary: !summary,
-            description: !description,
-            goalAmount: !goalAmount,
-            timeLeft: !timeLeft,
-        };
 
-        setErrors(newErrors);
-
-        if (window.confirm("작성하신 프로젝트 내용을 저장하시겠습니까?")) {
-            navigate("/funding/main/1");
-        }
-    };
 
     const [goalAmount, setGoalAmount] = useState("");
 
@@ -82,6 +67,9 @@ function FundingRegister() {
         "문화"
     ];
 
+    const [alertModal, setAlertModal] = useState({ show: false, message: "", onConfirm: null });
+
+
     useEffect(() => FundingPatch, [fundingData])
     return (
         <div className="funding-register-container">
@@ -103,41 +91,60 @@ function FundingRegister() {
 
                 const firstErrorField = Object.keys(newErrors).find((key) => newErrors[key]);
                 if (firstErrorField) {
-                    alert("필수 내용을 작성해주세요.");
-                    scrollToWithOffset(firstErrorField);
-                    console.log(timeLeft)
+                    // 기존 alert 대신 모달
+                    setAlertModal({
+                        show: true,
+                        message: "필수 내용을 작성해주세요.",
+                        onConfirm: () => {
+                            scrollToWithOffset(firstErrorField);
+                            setAlertModal({ show: false, message: "", onConfirm: null });
+                        }
+                    });
                     return;
                 }
 
-                let newFundingData = {
-                }
+                // 2. 저장 확인 모달 띄우기
+                setAlertModal({
+                    show: true,
+                    message: "작성하신 프로젝트 내용을 저장하시겠습니까?",
+                    onConfirm: () => {
+                        // 실제 저장 처리
+                        let tempDate = new Date(timeLeft);
+                        today.setHours(0, 0, 0, 0);
+                        tempDate.setHours(0, 0, 0, 0);
+                        let diffInMs = tempDate - today;
 
-                if (window.confirm("작성하신 프로젝트 내용을 저장하시겠습니까?")) {
-                    let tempDate = new Date(timeLeft)
-                    today.setHours(0, 0, 0, 0);
-                    tempDate.setHours(0, 0, 0, 0);
-                    let diffInMs = tempDate - today;
-                    newFundingData.author = loginInfo.name;
-                    newFundingData.bankers = 0;
-                    // newFundingData.category = '환경'
-                    newFundingData.category = category;
-                    newFundingData.finish = false;
-                    newFundingData.goalAmount = goalAmount;
-                    newFundingData.hearts = 0;
-                    newFundingData.id = 0;
-                    newFundingData.idea = summary;
-                    newFundingData.imgPath = "/images/fundingpage/funding9.jpg";
-                    newFundingData.map = location;
-                    newFundingData.rate = 0;
-                    newFundingData.subTitle = description;
-                    newFundingData.timeLeft = Math.abs(diffInMs / (1000 * 60 * 60 * 24));
-                    newFundingData.title = title;
-                    let temp = [newFundingData, ...fundingData];
-                    setFundingData(temp);
-                    localStorage.setItem('펀딩데이터', JSON.stringify(temp))
-                    navigate("/funding/main/1");
-                }
-                window.scrollTo(0, 0);
+                        let newFundingData = {
+                            author: loginInfo.name,
+                            bankers: 0,
+                            category: category,
+                            finish: false,
+                            goalAmount: goalAmount,
+                            hearts: 0,
+                            id: 0,
+                            idea: summary,
+                            imgPath: "/images/fundingpage/funding9.jpg",
+                            map: location,
+                            rate: 0,
+                            subTitle: description,
+                            timeLeft: Math.abs(diffInMs / (1000 * 60 * 60 * 24)),
+                            title: title
+                        };
+
+                        const temp = [newFundingData, ...fundingData];
+                        setFundingData(temp);
+                        localStorage.setItem('펀딩데이터', JSON.stringify(temp));
+
+                        window.scrollTo(0, 0);
+
+                        navigate("/funding/main/1");
+
+                        // 모달 닫기
+                        setAlertModal({ show: false, message: "", onConfirm: null });
+                    }
+                });
+
+                
             }}>
                 <div className="funding-input-container">
                     <p className="funding-your-idea" style={{ marginTop: '77px' }}>당신의 아이디어</p>
@@ -365,10 +372,10 @@ function FundingRegister() {
 
                         <div className="funding-date-row">
                             <div className="funding-date-box">
-                                <input 
-                                type="date" 
-                                value={timeStart}
-                                onChange={(e) => setTimeStart(e.target.value)}
+                                <input
+                                    type="date"
+                                    value={timeStart}
+                                    onChange={(e) => setTimeStart(e.target.value)}
                                 />
                                 <span>프로젝트 시작</span>
                             </div>
@@ -397,12 +404,26 @@ function FundingRegister() {
                         </div>
                     </div>
 
-
                     <div className="funding-footer-setting">
                         <button
                             className="funding-edit-btn"
                         >저장</button>
                     </div>
+
+                    {alertModal.show && (
+                        <div className="alert-modal-bg">
+                            <div className="alert-modal-box">
+                                <div className="alert-modal-message">{alertModal.message}</div>
+                                <button
+                                    type="submit"
+                                    className="alert-modal-btn"
+                                    onClick={alertModal.onConfirm}
+                                >
+                                    저장
+                                </button>
+                            </div>
+                        </div>
+                    )}
 
                 </div >
             </form>
